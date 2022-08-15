@@ -32,3 +32,11 @@ Como objetivo se requiere lograr el desarrollo de una página web que solucione 
    - [Migraciones](https://github.com/WardMore/ProyectoFinal/tree/main/script)
  
 5. Se crean wireframes con [Figma]( https://www.figma.com/), para dar fluidez al desarrollo HTML, además de dar una primera impresión al cliente.
+   
+   - [Wireframes con Figma](https://www.figma.com/file/Sr4MDMaeiepemrjxE8Ygfm/Untitled?node-id=0%3A1)
+   - [PDF de los Wireframes](https://github.com/WardMore/ProyectoFinal/tree/main/wireFrames)
+
+6. Se instalan todas las dependencias necesarias vistas hasta el momento: express, pg, express-handlebars, express-fileupload, bootstrap, jsonwebtoken, uuidv4.
+
+   - [package.json con las dependencias instaladas](https://github.com/WardMore/ProyectoFinal/blob/main/package.json)
+
