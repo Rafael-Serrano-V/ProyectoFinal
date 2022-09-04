@@ -104,6 +104,7 @@
     }
   
     //se valida el formulario, el cual comprueba si las entradas están vacías o formatos erroneos, si no cumple se mostrará una alerta y borde rojo, si cumple mostrará un borde verde.
+    // Se crea un nuevo usuario enviando una solicitud POST al servidor.
     btnRegistrar.addEventListener("click", async(event)=>{
         
         event.preventDefault();
@@ -218,7 +219,7 @@
         }
         const datos = { nombre, apellido, correo, telefono, direccion, comuna, contrasenia};
 
-        {{!-- fetch("/usuario", {
+        fetch("/usuario", {
             method: 'POST',
             body: JSON.stringify(datos), 
             headers:{
@@ -229,8 +230,7 @@
             window.location.href= "/login";
             })
         .catch( (error) => {
-            console.error('Error:', error);
             alert("Error 500");
-            }) --}}
+            }) 
     });
 </script>

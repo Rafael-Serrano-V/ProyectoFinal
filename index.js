@@ -1,21 +1,18 @@
 const express = require("express");
-
-
 const dotenv = require("dotenv");
 dotenv.config(); 
 const app = express();
 /* const expressFileUpload = require("express-fileupload"); */
 const exphbs = require('express-handlebars');
 const { listarCiudades, listarComunas} = require('./src/services/db.service');
-//const { rutasUsuario } = require('./src/routes/usuarios.routes');
+const { rutasUsuario } = require('./src/routes/usuarios.routes');
+
 const puerto = process.env.PUERTO_SERVIDOR;
 
+// Escuchando el puerto definido en archivo .env
 app.listen(puerto, ()=> console.log("Servidor Funcionando!"));
 
-// Middlewares
-app.use(express.json()); // recibir payload de las consultas post y put
-app.use(express.static(__dirname + "/assets")); 
-
+//Configura el motor de visualización en handlebars.
 app.engine(
   "handlebars",
   exphbs.engine({
@@ -24,6 +21,16 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
+
+// Middlewares
+
+// MiddleWare que analiza el cuerpo de la solicitud y lo pone a disposición en la propiedad req.body.
+app.use(express.json());
+//Sirve los archivos estaticos en la carpeta
+app.use(express.static(__dirname + "/assets")); 
+
+
+
 /* app.use(
     expressFileUpload({
       limits: 5000000, //tamaño limite para la carga de archivo
@@ -51,8 +58,10 @@ app.set("view engine", "handlebars");
     
   });
 
- /*  app.get("/login", (req, res)=>{
+ //Ruta que renderiza la vista login
+ app.get("/login", (req, res)=>{
     res.render("login");
   });
 
-  app.use('/usuario', rutasUsuario);  */
+ //Middleware que está usando la ruta /usuario y la ruta rutasUsuario.
+  app.use('/usuario', rutasUsuario); 
