@@ -62,7 +62,7 @@
                     <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrame</button>
                 </div>
                 <div class="d-grid gap-2 col-12 mx-auto">
-                    <a href="/login" class="btn btn-primary">¿Tienes cuenta? Ingresa</a>
+                    <a href="/" class="btn btn-primary">¿Tienes cuenta? Ingresa</a>
                 </div>
             </form>
         </div>
@@ -227,7 +227,7 @@
             }
         }).then( (res) => {
             alert("Te has registrado con exito!");
-            window.location.href= "/login";
+            window.location.href= "/";
             })
         .catch( (error) => {
             alert("Error 500");

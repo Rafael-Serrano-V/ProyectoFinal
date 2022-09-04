@@ -42,7 +42,7 @@ app.use(express.static(__dirname + "/assets"));
 
 
   //Ruta que está renderizando la vista registro
-  app.get("/", async(req, res)=>{
+  app.get("/registro", async(req, res)=>{
   
   try {
     const ciudades = await listarCiudades();
@@ -59,7 +59,7 @@ app.use(express.static(__dirname + "/assets"));
   });
 
  //Ruta que renderiza la vista login
- app.get("/login", (req, res)=>{
+ app.get("/", (req, res)=>{
     res.render("login");
   });
 
