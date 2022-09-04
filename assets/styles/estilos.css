@@ -1,0 +1,11 @@
+body{
+    background: #BF00FF;
+    background: linear-gradient(to right, #4C0B5F, #BF00FF );
+}
+.bg{
+    background-image: url(/imgs/bg.jpeg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+

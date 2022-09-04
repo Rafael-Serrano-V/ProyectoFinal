@@ -1,0 +1,232 @@
+<div class="container  w-75 bg-primary mt-5 rounded shadow">
+        <div class="row align-items-stretch">
+            <div class="col bg-white p-5 rounded">
+                <h2 class="fw-bold text-center py-5">Registro de Usuario</h2>
+            <form class="row g-4 mt-3">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <label class="fw-bold">Nombre:</label>
+                    <input  type="text" class="form-control" id="nombreInput" placeholder="Escribe tu nombre" pattern="^[A-Za-z]+$" required></input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <label class="fw-bold">Apellido:</label><br>
+                    <input type="text" class="form-control" id="apellidoInput" placeholder="Escribe tu apellido" pattern="^[A-Za-z]+$" required></input>
+                </div>
+                <div class="col-12">
+                    <label class="fw-bold">Correo electrónico:</label><br>
+                    <input type="email" class="form-control" id="correoInput" placeholder="Escribe tu correo electrónico" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required></input>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <label class="fw-bold">Número de contacto:</label>
+                    <input type="tel" class="form-control" value="+56" maxlength="12" id="contactoInput" pattern="^(\(?\+[\d]{1,3}\)?)\s?([\d]{1,5})\s?([\d][\s\.-]?){6,7}$" required>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <label class="fw-bold">Dirección:</label>
+                    <input type="text" class="form-control" placeholder="Escribe tu dirección" id="direccionInput" required>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <label class="fw-bold">Ciudad:</label>
+                    <select class="form-select" aria-label="Default select example" id="ciudadSelect">
+                        <option selected>Seleccione una ciudad</option>
+                        {{#each ciudades}}
+                        <option value={{this.id_region}}>{{this.nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <label class="fw-bold">Comuna:</label>
+                    <select class="form-select" aria-label="Default select example" id="comunaSelect2">
+                        <option selected>Seleccione una comuna</option>
+                        
+                    </select>
+                </div>
+                <div class="col-12" hidden>
+                    <label class="fw-bold">Comuna:</label>
+                    <select class="form-select" aria-label="Default select example" id="comunaSelect">
+                        <option selected>Seleccione una ciudad</option>
+                        {{#each comunas}}
+                        <option class={{this.id_comuna}} value={{this.id_region}}>{{this.nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <label class="fw-bold">Contraseña:</label>
+                    <input type="password" class="form-control" placeholder="Escriba su contraseña" id="contraseniaInput" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$">
+                    <p>La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un carácter no alfanumérico.</p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <label class="fw-bold">Repita su contraseña:</label>
+                    <input type="password" class="form-control" placeholder="Repita su contraseña" id="contraseniaDosInput" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$">
+                </div>
+                <div class="d-grid gap-2 col-12 mx-auto">
+                    <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrame</button>
+                </div>
+                <div class="d-grid gap-2 col-12 mx-auto">
+                    <a href="/login" class="btn btn-primary">¿Tienes cuenta? Ingresa</a>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+{{!-- <script>
+    const inputNombre = document.getElementById("nombreInput");
+    const inputApellido = document.getElementById("apellidoInput");
+    const inputCorreo = document.getElementById("correoInput");
+    const inputTelefono =  document.getElementById("contactoInput");
+    const inputDireccion = document.getElementById("direccionInput");
+    const selectComuna = document.getElementById("comunaSelect");
+    const selectCiudad = document.getElementById("ciudadSelect");
+    const selectComunaDos = document.getElementById("comunaSelect2");
+    const inputContrasenia = document.getElementById("contraseniaInput");
+    const inputContraseniaDos = document.getElementById("contraseniaDosInput");
+    const btnRegistrar = document.getElementById("btnRegistrar");
+
+    selectCiudad.addEventListener("change", (evento) => cargarSelectComuna(evento, selectComuna));
+
+    const cargarSelectComuna = (evento, elementoComuna)=>{
+        if(event.target.selectedIndex !== 0){
+            const ciudadSeleccionada = event.target.selectedIndex;
+            const opciones = elementoComuna.options;
+            selectComunaDos.innerHTML = '<option>Seleccione una comuna</option>';
+            
+            for (let item of opciones) {
+                if(item.value == ciudadSeleccionada){
+                    selectComunaDos.innerHTML += `
+                    <option class=${item.className} value=${item.value}>${item.text}</option>
+                    `;
+                } 
+            }
+        }
+    }
+  
+    btnRegistrar.addEventListener("click", async(event)=>{
+        
+        event.preventDefault();
+        const nombre = inputNombre.value;
+        const apellido = inputApellido.value;
+        const correo = inputCorreo.value;
+        const telefono = inputTelefono.value;
+        const direccion = inputDireccion.value;
+        const comuna = selectComunaDos.options[selectComunaDos.selectedIndex].className;
+        const contrasenia = inputContrasenia.value;
+        const contraseniaDos = inputContraseniaDos.value;
+
+        const datos = { nombre, apellido, correo, telefono, direccion, comuna, contrasenia};
+
+        if(nombre === "" || nombre.length < 2 || !inputNombre.checkValidity()){
+            inputNombre.classList.add("border-danger");
+            alert("Favor ingrese un nombre, solo letras y con un largo mayor o igual a dos.");
+            return false;
+        }else{
+            inputNombre.classList.remove("border-danger");
+            inputNombre.classList.add("border-success");
+        }
+
+        if(apellido === "" || apellido-length < 2 || !inputApellido.checkValidity()){
+            inputApellido.classList.add("border-danger");
+            alert("Favor ingrese un apellido, solo letras y con un largo mayor o igual a dos.");
+            return false;
+        }else{
+            inputApellido.classList.remove("border-danger");
+            inputApellido.classList.add("border-success");
+        }
+
+        if(correo === "" || !inputCorreo.checkValidity()){
+            inputCorreo.classList.add("border-danger");
+            alert("Formato de correo erróneo.");
+            return false;
+        }else{
+            inputCorreo.classList.remove("border-danger");
+            inputCorreo.classList.add("border-success");
+        }
+
+        if(telefono === "" || !inputTelefono.checkValidity()){
+            inputTelefono.classList.add("border-danger");
+            alert("Formato de teléfono erróneo.");
+            return false;
+        }else{
+            inputTelefono.classList.remove("border-danger");
+            inputTelefono.classList.add("border-success");
+        }
+
+        if(direccion === ""){
+            inputDireccion.classList.add("border-danger");
+            alert("Ingrese dirección.");
+            return false;
+        }else{
+            inputDireccion.classList.remove("border-danger");
+            inputDireccion.classList.add("border-success");
+        }
+
+        if(selectComunaDos.selectedIndex == 0){
+            selectComunaDos.classList.add("border-danger");
+            alert("Favor selecciona comuna.");
+            return false;
+        }else{
+            selectComunaDos.classList.remove("border-danger");
+            selectComunaDos.classList.add("border-success");
+        }
+
+        if(selectCiudad.selectedIndex == 0){
+            selectCiudad.classList.add("border-danger");
+            alert("Favor selecciona comuna.");
+            return false;
+        }else{
+            selectCiudad.classList.remove("border-danger");
+            selectCiudad.classList.add("border-success");
+        }
+        
+        if(contrasenia != contraseniaDos){
+            inputContrasenia.classList.add("border-danger");
+            inputContraseniaDos.classList.add("border-danger");
+            alert("Las contraseñas no coindicen, inténtalo de nuevo");
+            return false;
+        }else{
+            inputContrasenia.classList.remove("border-danger");
+            inputContraseniaDos.classList.remove("border-danger");
+            inputContrasenia.classList.add("border-success");
+            inputContraseniaDos.classList.add("border-success");
+            
+        }
+        if(contrasenia === "" || contraseniaDos === ""){
+            inputContrasenia.classList.add("border-danger");
+            inputContraseniaDos.classList.add("border-danger");
+            alert("Ingrese contraseña.");
+            return false;
+        }else{
+            inputContrasenia.classList.remove("border-danger");
+            inputContraseniaDos.classList.remove("border-danger");
+            inputContrasenia.classList.add("border-success");
+            inputContraseniaDos.classList.add("border-success");
+            
+        }
+        if(!inputContrasenia.checkValidity() || !inputContrasenia.checkValidity()){
+            inputContrasenia.classList.add("border-danger");
+            inputContraseniaDos.classList.add("border-danger");
+            alert("Formato de la contraseña incorrecto, inténtelo de nuevo.");
+            return false;
+        }else{
+            inputContrasenia.classList.remove("border-danger");
+            inputContraseniaDos.classList.remove("border-danger");
+            inputContrasenia.classList.add("border-success");
+            inputContraseniaDos.classList.add("border-success");
+            
+        }
+        
+        fetch("/usuario", {
+            method: 'POST',
+            body: JSON.stringify(datos), 
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        }).then( (res) => {
+            alert("Te has registrado con exito!");
+            window.location.href= "/login";
+            })
+        .catch( (error) => {
+            console.error('Error:', error);
+            alert("Error 500");
+            })
+    });
+</script> --}}

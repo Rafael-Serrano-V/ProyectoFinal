@@ -1,6 +1,5 @@
 #Ignora la carpeta node_modules
 node_modules
 .env
-src
-views
-assets
+
+
