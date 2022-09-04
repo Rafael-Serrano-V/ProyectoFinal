@@ -70,19 +70,18 @@
     </div>
 
 <script>
-    {{!-- const inputNombre = document.getElementById("nombreInput");
+    // Se obtienen los elementos HTML
+    const inputNombre = document.getElementById("nombreInput");
     const inputApellido = document.getElementById("apellidoInput");
     const inputCorreo = document.getElementById("correoInput");
     const inputTelefono =  document.getElementById("contactoInput");
-    const inputDireccion = document.getElementById("direccionInput"); --}}
-    
-    // Se obtienen los elementos HTML
+    const inputDireccion = document.getElementById("direccionInput");
     const selectComuna = document.getElementById("comunaSelect");
     const selectCiudad = document.getElementById("ciudadSelect");
     const selectComunaDos = document.getElementById("comunaSelect2");
-    {{!-- const inputContrasenia = document.getElementById("contraseniaInput");
+    const inputContrasenia = document.getElementById("contraseniaInput");
     const inputContraseniaDos = document.getElementById("contraseniaDosInput");
-    const btnRegistrar = document.getElementById("btnRegistrar") --}};
+    const btnRegistrar = document.getElementById("btnRegistrar")
 
     //Se agrega un detector de eventos al elemento SelectCiudad, cuando el elemento SelectCiudad cambia, se llama a la función cargarSelectComuna
     selectCiudad.addEventListener("change", (evento) => cargarSelectComuna(evento, selectComuna));
@@ -104,7 +103,8 @@
         }
     }
   
-    {{!-- btnRegistrar.addEventListener("click", async(event)=>{
+    //se valida el formulario, el cual comprueba si las entradas están vacías o formatos erroneos, si no cumple se mostrará una alerta y borde rojo, si cumple mostrará un borde verde.
+    btnRegistrar.addEventListener("click", async(event)=>{
         
         event.preventDefault();
         const nombre = inputNombre.value;
@@ -115,8 +115,6 @@
         const comuna = selectComunaDos.options[selectComunaDos.selectedIndex].className;
         const contrasenia = inputContrasenia.value;
         const contraseniaDos = inputContraseniaDos.value;
-
-        const datos = { nombre, apellido, correo, telefono, direccion, comuna, contrasenia};
 
         if(nombre === "" || nombre.length < 2 || !inputNombre.checkValidity()){
             inputNombre.classList.add("border-danger");
@@ -163,6 +161,15 @@
             inputDireccion.classList.add("border-success");
         }
 
+        if(selectCiudad.selectedIndex == 0){
+            selectCiudad.classList.add("border-danger");
+            alert("Favor selecciona ciudad.");
+            return false;
+        }else{
+            selectCiudad.classList.remove("border-danger");
+            selectCiudad.classList.add("border-success");
+        }
+
         if(selectComunaDos.selectedIndex == 0){
             selectComunaDos.classList.add("border-danger");
             alert("Favor selecciona comuna.");
@@ -172,14 +179,6 @@
             selectComunaDos.classList.add("border-success");
         }
 
-        if(selectCiudad.selectedIndex == 0){
-            selectCiudad.classList.add("border-danger");
-            alert("Favor selecciona comuna.");
-            return false;
-        }else{
-            selectCiudad.classList.remove("border-danger");
-            selectCiudad.classList.add("border-success");
-        }
         
         if(contrasenia != contraseniaDos){
             inputContrasenia.classList.add("border-danger");
@@ -217,8 +216,9 @@
             inputContraseniaDos.classList.add("border-success");
             
         }
-        
-        fetch("/usuario", {
+        const datos = { nombre, apellido, correo, telefono, direccion, comuna, contrasenia};
+
+        {{!-- fetch("/usuario", {
             method: 'POST',
             body: JSON.stringify(datos), 
             headers:{
@@ -231,6 +231,6 @@
         .catch( (error) => {
             console.error('Error:', error);
             alert("Error 500");
-            })
-    }); --}}
+            }) --}}
+    });
 </script>
