@@ -69,21 +69,25 @@
         </div>
     </div>
 
-{{!-- <script>
-    const inputNombre = document.getElementById("nombreInput");
+<script>
+    {{!-- const inputNombre = document.getElementById("nombreInput");
     const inputApellido = document.getElementById("apellidoInput");
     const inputCorreo = document.getElementById("correoInput");
     const inputTelefono =  document.getElementById("contactoInput");
-    const inputDireccion = document.getElementById("direccionInput");
+    const inputDireccion = document.getElementById("direccionInput"); --}}
+    
+    // Se obtienen los elementos HTML
     const selectComuna = document.getElementById("comunaSelect");
     const selectCiudad = document.getElementById("ciudadSelect");
     const selectComunaDos = document.getElementById("comunaSelect2");
-    const inputContrasenia = document.getElementById("contraseniaInput");
+    {{!-- const inputContrasenia = document.getElementById("contraseniaInput");
     const inputContraseniaDos = document.getElementById("contraseniaDosInput");
-    const btnRegistrar = document.getElementById("btnRegistrar");
+    const btnRegistrar = document.getElementById("btnRegistrar") --}};
 
+    //Se agrega un detector de eventos al elemento SelectCiudad, cuando el elemento SelectCiudad cambia, se llama a la función cargarSelectComuna
     selectCiudad.addEventListener("change", (evento) => cargarSelectComuna(evento, selectComuna));
 
+    //Se crea una función que se llamará cuando el usuario seleccione una ciudad del menu desplegable.
     const cargarSelectComuna = (evento, elementoComuna)=>{
         if(event.target.selectedIndex !== 0){
             const ciudadSeleccionada = event.target.selectedIndex;
@@ -100,7 +104,7 @@
         }
     }
   
-    btnRegistrar.addEventListener("click", async(event)=>{
+    {{!-- btnRegistrar.addEventListener("click", async(event)=>{
         
         event.preventDefault();
         const nombre = inputNombre.value;
@@ -228,5 +232,5 @@
             console.error('Error:', error);
             alert("Error 500");
             })
-    });
-</script> --}}
+    }); --}}
+</script>

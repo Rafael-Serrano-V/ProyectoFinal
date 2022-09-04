@@ -6,14 +6,14 @@ dotenv.config();
 const app = express();
 /* const expressFileUpload = require("express-fileupload"); */
 const exphbs = require('express-handlebars');
-/* const { listarCiudades, listarComunas} = require('./src/services/db.service');
-const { rutasUsuario } = require('./src/routes/usuarios.routes'); */
+const { listarCiudades, listarComunas} = require('./src/services/db.service');
+//const { rutasUsuario } = require('./src/routes/usuarios.routes');
 const puerto = process.env.PUERTO_SERVIDOR;
 
 app.listen(puerto, ()=> console.log("Servidor Funcionando!"));
 
 // Middlewares
-/* app.use(express.json()); // recibir payload de las consultas post y put */
+app.use(express.json()); // recibir payload de las consultas post y put
 app.use(express.static(__dirname + "/assets")); 
 
 app.engine(
@@ -34,9 +34,10 @@ app.set("view engine", "handlebars");
 
 
 
+  //Ruta que está renderizando la vista registro
   app.get("/", async(req, res)=>{
-    res.render("registro");
- /*  try {
+  
+  try {
     const ciudades = await listarCiudades();
     const comunas = await listarComunas();
     res.render("registro", { ciudades, comunas });
@@ -46,7 +47,7 @@ app.set("view engine", "handlebars");
         error: `Algo salio mal...${error}`,
         code: 500,
       });
-    } */
+    }
     
   });
 
