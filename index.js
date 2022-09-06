@@ -1,16 +1,21 @@
 const express = require("express");
 const dotenv = require("dotenv");
-dotenv.config(); 
+dotenv.config();
 const app = express();
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 /* const expressFileUpload = require("express-fileupload"); */
-const exphbs = require('express-handlebars');
-const { listarCiudades, listarComunas} = require('./src/services/db.service');
-const { rutasUsuario } = require('./src/routes/usuarios.routes');
+const exphbs = require("express-handlebars");
+const { listarCiudades, listarComunas, obtenerUsuarioPorId } = require("./src/services/db.service");
+const { postLoginUsuario } = require("./src/controllers/usuarios.controllers");
+const { rutasUsuario } = require("./src/routes/usuarios.routes");
+const { cookieRutaProtegida } = require("./src/middlewares/cookie.middlewares");
+const { validarToken } = require("./src/services/jwt.service");
 
 const puerto = process.env.PUERTO_SERVIDOR;
 
 // Escuchando el puerto definido en archivo .env
-app.listen(puerto, ()=> console.log("Servidor Funcionando!"));
+app.listen(puerto, () => console.log("Servidor Funcionando!"));
 
 //Configura el motor de visualización en handlebars.
 app.engine(
@@ -25,11 +30,10 @@ app.set("view engine", "handlebars");
 // Middlewares
 
 // MiddleWare que analiza el cuerpo de la solicitud y lo pone a disposición en la propiedad req.body.
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 //Sirve los archivos estaticos en la carpeta
-app.use(express.static(__dirname + "/assets")); 
-
-
+app.use(express.static(__dirname + "/assets"));
 
 /* app.use(
     expressFileUpload({
@@ -39,29 +43,39 @@ app.use(express.static(__dirname + "/assets"));
     })
   ); */
 
-
-
-  //Ruta que está renderizando la vista registro
-  app.get("/registro", async(req, res)=>{
-  
+//Ruta que está renderizando la vista registro
+app.get("/registro", async (req, res) => {
   try {
     const ciudades = await listarCiudades();
     const comunas = await listarComunas();
     res.render("registro", { ciudades, comunas });
-    } 
-    catch (error) {
-      res.status(500).send({
-        error: `Algo salio mal...${error}`,
-        code: 500,
-      });
-    }
-    
-  });
+  } catch (error) {
+    return res.status(500).send({
+      error: `Algo salio mal...${error}`,
+      code: 500,
+    });
+  }
+});
 
- //Ruta que renderiza la vista login
- app.get("/", (req, res)=>{
-    res.render("login");
-  });
+//Ruta que se utiliza para inicar sesión
+app.post("/acceso", postLoginUsuario);
 
- //Middleware que está usando la ruta /usuario y la ruta rutasUsuario.
-  app.use('/usuario', rutasUsuario); 
+//Ruta que renderiza la vista login
+app.get("/", (req, res) => {
+  res.render("login");
+});
+
+//Ruta que se le pasa un middleware para proteger vistas.
+app.get("/home", cookieRutaProtegida, async (req, res) => {
+  console.log(req.cookies.moonToken);
+  const { data } = validarToken(req.cookies.moonToken);
+  const usuario = await obtenerUsuarioPorId(data);
+  const { contrasenia: contra, ...restUsuario } = usuario;
+  console.log(usuario);
+  usuario.es_admin
+    ? res.render("admin", { restUsuario })
+    : res.render("solicitud", { restUsuario });
+});
+
+//Middleware que está usando la ruta /usuario y la ruta rutasUsuario.
+app.use("/usuario", rutasUsuario);

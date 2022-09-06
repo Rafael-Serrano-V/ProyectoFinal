@@ -4,23 +4,46 @@
         </div>
         <div class="col bg-white p-5 rounded">
             <h2 class="fw-bold text-center py-5">Inicia sesión para armar tu computador</h2>
-            <form action="#">
                 <div class="mb-4">
-                    <label for="email" class="form-label"> Correo electrónico:</label>
-                    <input type="email" class="form-control" name="email" id="inputCorreo"> 
+                    <label for="correo" class="form-label"> Correo electrónico:</label>
+                    <input type="email" class="form-control" id="correo"> 
                 </div>
                 <div class="mb-4">
-                    <label for="password" class="form-label"> Contraseña:</label>
-                    <input type="password" class="form-control" name="password" id="inputContrasenia"> 
+                    <label for="contrasenia" class="form-label"> Contraseña:</label>
+                    <input type="password" class="form-control" id="contrasenia"> 
                 </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button><br>
+                    <button type="submit" class="btn btn-primary" onclick="verificacion()">Iniciar Sesión</button><br>
                     <a href="/registro" class="btn btn-primary">¿No tienes cuenta? Registrate</a>
                 </div>
-            </form>
+            
         </div>
     </div>
 </div>
 <script>
+    //Función que se llama cuando se presiona el boton. Toma los valores de las entradas y los envía al servidor. El servidor responde con un código de estado y la función
+    //muestra una alerta dependiendo del código de estado.
+    const verificacion = async()=>{
+        const correo = document.getElementById("correo").value;
+        const contrasenia = document.getElementById("contrasenia").value;
+        const datos = {correo, contrasenia};
 
-</script>    
+        fetch("/acceso", {
+            method: 'POST',
+            body: JSON.stringify(datos), 
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        }).then( (res) => {
+            if(res.status === 400)alert ('Ingrese correo y contraseña!');
+            if(res.status === 403)alert('Contraseña Erronea!');
+            if(res.status === 404)alert('Usuario no registrado!');
+            if(res.status === 200){
+                alert('Te has logeado');
+                window.location.href = '/home';
+            }
+            
+            }) 
+            
+    }
+</script>
