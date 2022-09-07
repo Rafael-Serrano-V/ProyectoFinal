@@ -38,6 +38,7 @@
             if(res.status === 400)alert ('Ingrese correo y contraseña!');
             if(res.status === 403)alert('Contraseña Erronea!');
             if(res.status === 404)alert('Usuario no registrado!');
+            if(res.status === 401)alert('Usuario no autorizado!');
             if(res.status === 200){
                 alert('Te has logeado');
                 window.location.href = '/home';
