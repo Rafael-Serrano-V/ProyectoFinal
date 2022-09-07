@@ -25,6 +25,7 @@ const crearUsuario = async (req, res) => {
  comprueba si el usuario está activo, si lo está, genera un token y lo envía al cliente. 
  */
 const postLoginUsuario = async (req, res) => {
+  const { correo, contrasenia} = req.body;
   if (!correo || !contrasenia)
     return res.status(400).json({ error: "Faltan Parametros" });
   const usuario = await obtenerUsuarioPorCorreo(correo);
