@@ -76,9 +76,9 @@ app.get("/home", cookieRutaProtegida, async (req, res) => {
   if(!usuario.es_admin){
     const comuna = await obtenercomunaPorId(usuario.id_comuna);
     const ciudad = await obtenerCiudadPorId(comuna.id_region);
-    /* const ciudades = await listarCiudades();
-    const comunas = await listarComunas(); */
-    res.render("perfil", { restUsuario, comuna, ciudad, /* ciudades, comunas */ });
+    const ciudades = await listarCiudades();
+    const comunas = await listarComunas();
+    res.render("perfil", { restUsuario, comuna, ciudad, ciudades, comunas});
   }
 });
 
