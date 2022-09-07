@@ -20,6 +20,26 @@ const listarComunas = async () => {
   return resultado.rows;
 };
 
+//Toma una idComuna y devuelve la fila en la tabla de comunas que tiene esa idComuna.
+const obtenercomunaPorId = async (idComuna) => {
+  const consulta = {
+    text: "SELECT * FROM comunas WHERE id_comuna=$1",
+    values: [idComuna],
+  }
+  const resultado = await pool.query(consulta);
+  return resultado.rows[0];
+}
+
+//Toma un idCiudad, y devuelve la fila de la tabla de regiones que tiene ese id.
+const obtenerCiudadPorId = async (idCiudad) => {
+  const consulta = {
+    text: "SELECT * FROM regiones WHERE id_region=$1",
+    values: [idCiudad],
+  }
+  const resultado = await pool.query(consulta);
+  return resultado.rows[0];
+}
+
 //Toma un objeto con los datos del usuario y lo inserta en la base de datos, se devuelve el resultado de la consulta.
 const crearUsuarioDB = async ({ nombre, apellido, correo, hash, telefono, direccion, idComuna }) => {
   try {
@@ -68,5 +88,7 @@ module.exports = {
   crearUsuarioDB,
   obtenerUsuarioPorCorreo,
   //obtenerUsuariosDB,
-  obtenerUsuarioPorId
+  obtenerUsuarioPorId,
+  obtenercomunaPorId,
+  obtenerCiudadPorId
 };
