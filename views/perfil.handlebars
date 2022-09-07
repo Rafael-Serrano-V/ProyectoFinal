@@ -15,29 +15,29 @@
                 <div class="row g-4 mt-3">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <label class="fw-bold">Nombre:</label>
-                    <input  type="text" class="form-control" id="nombreInput" {{!-- placeholder={{restUsuario.nombre}} value={{restUsuario.nombre}} --}}></input>
+                    <input  type="text" class="form-control" id="nombreInput" placeholder={{restUsuario.nombre}} value={{restUsuario.nombre}}></input>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <label class="fw-bold">Apellido:</label><br>
-                    <input type="text" class="form-control" id="apellidoInput" {{!-- placeholder="{{restUsuario.apellido}}" value={{restUsuario.apellido}} --}}></input>
+                    <input type="text" class="form-control" id="apellidoInput" placeholder="{{restUsuario.apellido}}" value={{restUsuario.apellido}}></input>
                 </div>
                 <div class="col-12">
                     <label class="fw-bold">Correo electrónico:</label><br>
-                    <input type="email" class="form-control" id="emailInput"disabled {{!-- value={{restUsuario.email}} --}}></input>
+                    <input type="email" class="form-control" id="emailInput"disabled value={{restUsuario.email}}></input>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <label class="fw-bold">Número de contacto:</label>
-                    <input type="tel" class="form-control" maxlength="12" id="contactoInput" {{!-- value={{restUsuario.telefono}} --}}>
+                    <input type="tel" class="form-control" maxlength="12" id="contactoInput" value={{restUsuario.telefono}}>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <label class="fw-bold">Dirección:</label>
-                    <input type="text" class="form-control" id="direccionInput" {{!-- value="{{restUsuario.direccion}}" --}}>
+                    <input type="text" class="form-control" id="direccionInput" value="{{restUsuario.direccion}}">
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <label class="fw-bold">Ciudad:</label>
                     <select class="form-select" aria-label="Default select example" id="ciudadSelect"> 
-                        {{!-- <option value={{ciudad.id_region}} selected>{{ciudad.nombre}}</option>
-                        {{#each ciudades}}
+                        <option value={{ciudad.id_region}} selected>{{ciudad.nombre}}</option>
+                        {{!-- {{#each ciudades}}
                         <option value={{this.id_region}}>{{this.nombre}}</option>
                         {{/each}} --}}
                     </select>
@@ -45,7 +45,7 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <label class="fw-bold">Comuna:</label>
                     <select class="form-select" aria-label="Default select example" id="comunaSelect2">
-                        {{!-- <option value={{comuna.id_comuna}}selected>{{comuna.nombre}}</option> --}}
+                        <option value={{comuna.id_comuna}}selected>{{comuna.nombre}}</option>
                     </select>
                 </div>
                 <div class="col-12" hidden>

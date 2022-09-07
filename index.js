@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 /* const expressFileUpload = require("express-fileupload"); */
 const exphbs = require("express-handlebars");
-const { listarCiudades, listarComunas, obtenerUsuarioPorId } = require("./src/services/db.service");
+const { listarCiudades, listarComunas, obtenerUsuarioPorId, obtenercomunaPorId, obtenerCiudadPorId } = require("./src/services/db.service");
 const { postLoginUsuario } = require("./src/controllers/usuarios.controllers");
 const { rutasUsuario } = require("./src/routes/usuarios.routes");
 const { cookieRutaProtegida } = require("./src/middlewares/cookie.middlewares");
@@ -67,14 +67,19 @@ app.get("/", (req, res) => {
 
 //Ruta que se le pasa un middleware para proteger vistas.
 app.get("/home", cookieRutaProtegida, async (req, res) => {
-  console.log(req.cookies.moonToken);
   const { data } = validarToken(req.cookies.moonToken);
   const usuario = await obtenerUsuarioPorId(data);
   const { contrasenia: contra, ...restUsuario } = usuario;
-  console.log(usuario);
-  usuario.es_admin
-    ? res.render("admin", { restUsuario })
-    : res.render("solicitud", { restUsuario });
+  if(usuario.es_admin){
+    res.render("admin", { restUsuario });
+  }
+  if(!usuario.es_admin){
+    const comuna = await obtenercomunaPorId(usuario.id_comuna);
+    const ciudad = await obtenerCiudadPorId(comuna.id_region);
+    /* const ciudades = await listarCiudades();
+    const comunas = await listarComunas(); */
+    res.render("perfil", { restUsuario, comuna, ciudad, /* ciudades, comunas */ });
+  }
 });
 
 //Middleware que está usando la ruta /usuario y la ruta rutasUsuario.
