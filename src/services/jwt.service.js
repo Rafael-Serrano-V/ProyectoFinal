@@ -9,7 +9,6 @@ const generadorDeToken = (usuario) => {
     },
     llaveSecreta
   );
-  console.log(token);
   return token;
 };
 
@@ -22,7 +21,6 @@ const validarToken = (token)=>{
             datos = decoded;
         }
     })
-    console.log(datos);
     return datos;
 }
 
