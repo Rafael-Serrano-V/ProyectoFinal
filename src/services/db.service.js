@@ -81,6 +81,16 @@ const obtenerUsuarioPorId = async (id) => {
   return resultado.rows[0];
 }
 
+//Actualiza la información del usuario en la base de datos
+const actualizarUsuario = async(nombre, apellido, contacto, direccion, comuna, correo)=>{
+  const consulta  = {
+      text: "UPDATE usuarios SET nombre = $1, apellido = $2, telefono = $3, direccion = $4, id_comuna = $5 WHERE email = $6",
+      values: [nombre, apellido, contacto, direccion, comuna, correo],
+  }
+
+  return await pool.query(consulta);
+}
+
 //Se exportan las funciones para ser utilizadas en otros archivos
 module.exports = {
   listarCiudades,
@@ -90,5 +100,6 @@ module.exports = {
   //obtenerUsuariosDB,
   obtenerUsuarioPorId,
   obtenercomunaPorId,
-  obtenerCiudadPorId
+  obtenerCiudadPorId,
+  actualizarUsuario
 };
