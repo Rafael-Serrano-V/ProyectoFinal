@@ -65,13 +65,15 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
-//Ruta que se le pasa un middleware para proteger vistas.
+//Ruta que se le pasa un middleware para proteger vistas de administrador y usuario
 app.get("/home", cookieRutaProtegida, async (req, res) => {
-  const { data } = validarToken(req.cookies.moonToken);
-  const usuario = await obtenerUsuarioPorId(data);
-  const { contrasenia: contra, ...restUsuario } = usuario;
-  if(usuario.es_admin){
-    res.render("admin", { restUsuario });
+  
+  try {
+    const { data } = validarToken(req.cookies.moonToken);
+    const usuario = await obtenerUsuarioPorId(data);
+    const { contrasenia: contra, ...restUsuario } = usuario;
+    if(usuario.es_admin){
+      res.render("admin", { restUsuario });
   }
   if(!usuario.es_admin){
     const comuna = await obtenercomunaPorId(usuario.id_comuna);
@@ -79,6 +81,9 @@ app.get("/home", cookieRutaProtegida, async (req, res) => {
     const ciudades = await listarCiudades();
     const comunas = await listarComunas();
     res.render("perfil", { restUsuario, comuna, ciudad, ciudades, comunas});
+  }
+  } catch (error) {
+    res.render("login");
   }
 });
 
