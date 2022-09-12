@@ -1,4 +1,4 @@
-const { crearUsuarioDB, obtenerUsuarioPorCorreo } = require("../services/db.service");
+const { crearUsuarioDB, obtenerUsuarioPorCorreo, actualizarUsuario } = require("../services/db.service");
 const bcrypt = require("bcrypt");
 const { generadorDeToken } = require("../services/jwt.service");
 
@@ -26,8 +26,7 @@ const crearUsuario = async (req, res) => {
  */
 const postLoginUsuario = async (req, res) => {
   const { correo, contrasenia} = req.body;
-  if (!correo || !contrasenia)
-    return res.status(400).json({ error: "Faltan Parametros" });
+  if (!correo || !contrasenia) return res.status(400).json({ error: "Faltan Parametros" });
   const usuario = await obtenerUsuarioPorCorreo(correo);
   if (usuario) {
     const { contrasenia: contra, ...restUsuario } = usuario;
@@ -54,6 +53,17 @@ const postLoginUsuario = async (req, res) => {
     });
   }
 };
+
+//Toma los datos del cuerpo de la solicitud y luego llama a la función actualizarUsuario, que es el que actualiza la base de datos.
+const modificarUsuario = async(req, res) => {
+  const { nombre, apellido, contacto, direccion, comuna, correo } = req.body;
+  try {
+    await actualizarUsuario(nombre, apellido, contacto, direccion, comuna, correo);
+    res.status(200).json( { mensaje: "Usuario modificado exitosamente" });
+  } catch (error) {
+    res.status(500).json( {error});
+  }
+}
 
 /* const obtenerUsuarios = async (req, res) => {
       try {
@@ -83,4 +93,5 @@ const postLoginUsuario = async (req, res) => {
 module.exports = {
   crearUsuario,
   postLoginUsuario,
+  modificarUsuario
 };
