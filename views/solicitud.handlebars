@@ -1,0 +1,573 @@
+
+  <div class="container bg-white mt-5 rounded shadow pb-3 w-75">
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3 mt-3">
+        <h2>Arma tu computador:</h2>{{!-- <span class="text-primary text-uppercase">{{restUsuario.nombre}} {{restUsuario.apellido}} (ID: {{restUsuario.id_usuario}})</span>
+        <input id="idUsuario" value={{restUsuario.id_usuario}} hidden> --}}
+      </div>
+      <div class="col-12 col-md-6 d-grid gap-2 d-md-flex  justify-content-md-end pt-3 pb-3">
+        
+        <a href="/home" class="btn btn-outline-primary">Mi Perfil</a>
+        <a href="/solicitudes" class="btn btn-outline-primary">Mis Solicitudes</a>
+        
+      </div>
+      
+    </div>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="headingPiezasBasicas">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePiezasBasicas" aria-expanded="false" aria-controls="collapsePiezasBasicas">
+          1 Seleccionar piezas básicas<i class="fa-solid fa-triangle-exclamation text-danger ms-4"></i>
+          </button>
+        </h2>
+        <div id="collapsePiezasBasicas" class="accordion-collapse collapse" aria-labelledby="headingPiezasBasicas" data-bs-parent="#accordionPanelsStayOpenExample">
+          <div class="accordion-body">
+            <div id="contenedorSelectProcesador">
+              <label class="fw-bold">Procesador (CPU)</label><label class="text-danger ms-2">*Obligatorio</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectProcesador">
+                <option selected>Selecciona Procesador(CPU)</option>
+                {{!-- {{#each procesador}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+             <div class="card mb-3 border-primary" id="cardProcesador">
+             </div>  --}}
+             </select>
+            </div>
+            <div id="contenedorSelectPlacaMadre">
+              <label class="fw-bold">Placa Madre</label><label class="text-danger ms-2">*Obligatorio</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectPlacaMadre">
+                <option selected>Selecciona Placa Madre</option>
+                {{!-- {{#each placaMadre}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardPlacaMadre">
+              </div>  --}}
+            </div>
+            <div id="contenedorSelectRam">
+              <label class="fw-bold">1ra Memoria Ram</label><label class="text-danger ms-2">*Obligatorio</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectRam">
+                <option selected>Selecciona 1ra Memoria Ram</option>
+                {{!-- {{#each memoriaRAM}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardMemoriaRam">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorSelectRamDos" hidden>
+              <label class="fw-bold">2da Memoria Ram</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectRamDos">
+                <option selected>Selecciona 2da Memoria Ram</option>
+                {{!-- {{#each memoriaRAM}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardMemoriaRamDos">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorSelectVideo">
+              <label class="fw-bold">1ra Tarjeta Gráfica</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectVideo">
+                <option selected>Selecciona 1ra Tarjeta Gráfica</option>
+                {{!-- {{#each tarjetaGrafica}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardTarjetaGrafica">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorSelectVidedoDos" hidden>
+              <label class="fw-bold">2da Tarjeta Gráfica</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectVideoDos">
+                <option selected>Selecciona 2da Tarjeta Gráfica</option>
+                {{!-- {{#each tarjetaGrafica}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardTarjetaGraficaDos">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorSelectTarjetaRed">
+              <label class="fw-bold">Tarjeta de Red</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectTarjetaRed">
+                <option selected>Selecciona Tarjeta de Red</option>
+                {{!-- {{#each tarjetaDeRed}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardTarjetaRed">
+              </div> --}}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          2 Almacenamiento<i class="fa-solid fa-triangle-exclamation text-danger ms-4"></i>
+         </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            <div id="contenedorSelectM2">
+              <label class="fw-bold">1ra Unidad M.2</label><label class="text-danger ms-2">*Obligatorio</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectM2">
+                <option selected>Selecciona 1ra Unidad M.2</option>
+                {{!-- {{#each unidadMDos}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardUnidadM2">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorSelectM2Dos" hidden>
+              <label class="fw-bold">2da Unidad M.2</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example"  id="selectM2Dos">
+                <option selected>Selecciona 2da Unidad M.2</option>
+                {{!-- {{#each unidadMDos}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardUnidadM2Dos">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorSSD">
+              <label class="fw-bold">1ra Unidad SSD</label><label class="text-danger ms-2">*Obligatorio</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectSSD">
+                <option selected>Selecciona 1ra Unidad SSD</option>
+               {{!--  {{#each unidadSSD}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardSSD">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorSelectSSDDos" hidden>
+              <label class="fw-bold">2da Unidad SSD</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectSSDDos">
+                <option selected>Selecciona 2da Unidad SSD</option>
+                {{!-- {{#each unidadSSD}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardSSDDos">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorDiscoDuro">
+              <label class="fw-bold">1er Disco Duro</label><label class="text-danger ms-2">*Obligatorio</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectDiscoDuro">
+                <option selected>Selecciona 1er Disco Duro</option>
+                {{!-- {{#each discoDuro}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardDiscoDuro">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorDiscoDuroDos" hidden>
+              <label class="fw-bold">2do Disco Duro</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectDiscoDuroDos">
+                <option selected>Selecciona 2do Disco Duro</option>
+                {{!-- {{#each discoDuro}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardDiscoDuroDos">
+              </div> --}}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+          3 Seleccionar gabinete<i class="fa-solid fa-triangle-exclamation text-danger ms-4"></i>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+          <div class="accordion-body">
+            <div id="contenedorGabinete">
+              <label class="fw-bold">Gabinete</label><label class="text-danger ms-2">*Obligatorio</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectGabinete">
+                <option selected>Selecciona Gabinete</option>
+                {{!-- {{#each gabinete}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardGabinete">
+              </div> --}}
+              </select>
+            </div>               
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+          4 Energía y Refrigeración
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+          <div class="accordion-body">
+            <div id="contenedorFuenteDePoder">
+              <label class="fw-bold">Fuente de Poder</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectFuenteDePoder">
+                <option selected>Selecciona Fuente de Poder</option>
+                {{!-- {{#each fuenteDePoder}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardFuenteDePoder">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorVentilador">
+              <label class="fw-bold">Ventilador</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectVentilador">
+                <option selected>Selecciona Ventilador</option>
+                {{!-- {{#each ventilador}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardVentilador">
+              </div> --}}
+              </select>
+            </div>
+            <div id="contenedorRefrigeracion">
+              <label class="fw-bold">Refrigeración CPU</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectRefrigeracion">
+                <option selected>Selecciona Refrigeración CPU</option>
+                {{!-- {{#each refrigeracion}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardRefrigeracion">
+              </div> --}}
+              </select>
+            </div>                        
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+          5 Sistema Operativo
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+          <div class="accordion-body">
+            <div id="contenedorSistemaOperativo">
+              <label class="fw-bold">Sistema Operativo</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectSistemaOperativo">
+                <option selected>Selecciona Sistema Operativo</option>
+                {{!-- {{#each sistemaOperativo}}
+                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                {{/each}}
+              </select>
+              <div class="card mb-3 border-primary" id="cardSistemaOperativo">
+              </div> --}}
+              </select>
+            </div>                 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" id="contenedorTotal">
+        <div id="resultados">
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary" id="btnEnviar">Enviar Solicitud</button>
+      </div>
+
+    </div>
+  </div> 
+<script>
+{{!--   
+  //Se crean variables por cada uno de los elementos HTML a utilizar.
+  const selectProcesador = document.getElementById("selectProcesador");
+  const cardProcesador= document.getElementById("cardProcesador");
+  const selectPlacaMadre = document.getElementById("selectPlacaMadre");
+  const cardPlacaMadre = document.getElementById("cardPlacaMadre");
+  const selectRam = document.getElementById("selectRam");
+  const cardMemoriaRam = document.getElementById("cardMemoriaRam");
+  const selectRamDos = document.getElementById("selectRamDos");
+  const cardMemoriaRamDos = document.getElementById("cardMemoriaRamDos");
+  const contenedorSelectRamDos = document.getElementById("contenedorSelectRamDos");
+  const selectVideo = document.getElementById("selectVideo");
+  const cardTarjetaGrafica = document.getElementById("cardTarjetaGrafica");
+  const contenedorSelectVidedoDos = document.getElementById("contenedorSelectVidedoDos");
+  const selectVideoDos = document.getElementById("selectVideoDos");
+  const cardTarjetaGraficaDos = document.getElementById("cardTarjetaGraficaDos");
+  const selectTarjetaRed = document.getElementById("selectTarjetaRed");
+  const cardTarjetaRed = document.getElementById("cardTarjetaRed");
+  const selectM2 = document.getElementById("selectM2");
+  const cardUnidadM2 = document.getElementById("cardUnidadM2");
+  const selectM2Dos = document.getElementById("selectM2Dos");
+  const cardUnidadM2Dos = document.getElementById("cardUnidadM2Dos");
+  const contenedorSelectM2 = document.getElementById("contenedorSelectM2Dos");
+  const selectSSD = document.getElementById("selectSSD");
+  const cardSSD = document.getElementById("cardSSD");
+  const selectSSDDos = document.getElementById("selectSSDDos");
+  const cardSSDDos = document.getElementById("cardSSDDos");
+  const contenedorSelectSSDDos = document.getElementById("contenedorSelectSSDDos");
+  const selectDiscoDuro = document.getElementById("selectDiscoDuro");
+  const cardDiscoDuro = document.getElementById("cardDiscoDuro");
+  const selectDiscoDuroDos = document.getElementById("selectDiscoDuroDos");
+  const cardDiscoDuroDos = document.getElementById("cardDiscoDuroDos");
+  const contenedorDiscoDuroDos = document.getElementById("contenedorDiscoDuroDos");
+  const selectGabinete = document.getElementById("selectGabinete");
+  const cardGabinete = document.getElementById("cardGabinete");
+  const selectFuenteDePoder = document.getElementById("selectFuenteDePoder");
+  const cardFuenteDePoder = document.getElementById("cardFuenteDePoder");
+  const selectVentilador = document.getElementById("selectVentilador");
+  const cardVentilador = document.getElementById("cardVentilador");
+  const selectRefrigeracion = document.getElementById("selectRefrigeracion");
+  const cardRefrigeracion = document.getElementById("cardRefrigeracion");
+  const selectSistemaOperativo = document.getElementById("selectSistemaOperativo");
+  const cardSistemaOperativo = document.getElementById("cardSistemaOperativo");
+  const btnEnviar = document.getElementById("btnEnviar");
+
+  /* Se registra un evento change a cada select que necesite mostrar un segundo select, cuando el select con el evento change cambia, 
+  se llama a la función activaSelect con el evento y el elemento a mostrar. */
+  selectRam.addEventListener("change", (event) => activaSelect(event, contenedorSelectRamDos));
+  selectVideo.addEventListener("change", (event) => activaSelect(event, contenedorSelectVidedoDos));
+  selectM2.addEventListener("change", (event) => activaSelect(event, contenedorSelectM2Dos));
+  selectSSD.addEventListener("change", (event) => activaSelect(event, contenedorSelectSSDDos));
+  selectDiscoDuro.addEventListener("change", (event) => activaSelect( event, contenedorDiscoDuroDos));
+  
+ /* Función que se llama cuando se cambia la selección de un select predeterminado, comprueba si la selección no es la primera opción (índice 0)
+ y si no lo es quita el atributo "hidden" del segundo parámetro que corresponde al elemento a mostrar, si es la primera opción, agrega el atributo "hidden". */
+  const activaSelect = (event, selectParaActivar)=>{
+    if(event.target.selectedIndex !== 0){
+      selectParaActivar.removeAttribute("hidden");
+    }else{
+      selectParaActivar.setAttribute("hidden", "hidden");
+    }
+  }
+
+  selectProcesador.addEventListener("change", (evento)=> mostrarCard(evento, cardProcesador));
+  selectPlacaMadre.addEventListener("change", (evento)=> mostrarCard(evento, cardPlacaMadre));
+  selectRam.addEventListener("change",(evento)=> mostrarCard(evento, cardMemoriaRam));
+  selectRamDos.addEventListener("change", (evento) => mostrarCard(evento, cardMemoriaRamDos));
+  selectVideo.addEventListener("change", (evento) => mostrarCard(evento, cardTarjetaGrafica));
+  selectVideoDos.addEventListener("change", (evento) => mostrarCard(evento, cardTarjetaGraficaDos));
+  selectTarjetaRed.addEventListener("change", (evento) => mostrarCard(evento, cardTarjetaRed));
+  selectM2.addEventListener("change", (evento) => mostrarCard(evento, cardUnidadM2));
+  selectM2Dos.addEventListener("change", (evento) => mostrarCard(evento, cardUnidadM2Dos));
+  selectSSD.addEventListener("change", (evento) => mostrarCard(evento, cardSSD));
+  selectSSDDos.addEventListener("change", (evento) => mostrarCard(evento, cardSSDDos));
+  selectDiscoDuro.addEventListener("change", (evento) => mostrarCard(evento, cardDiscoDuro));
+  selectDiscoDuroDos.addEventListener("change", (evento) => mostrarCard(evento, cardDiscoDuroDos));
+  selectGabinete.addEventListener("change", (evento) => mostrarCard(evento, cardGabinete));
+  selectFuenteDePoder.addEventListener("change", (evento) => mostrarCard(evento, cardFuenteDePoder));
+  selectVentilador.addEventListener("change", (evento) => mostrarCard(evento, cardVentilador));
+  selectRefrigeracion.addEventListener("change", (evento) => mostrarCard(evento, cardRefrigeracion));
+  selectSistemaOperativo.addEventListener("change", (evento) => mostrarCard(evento, cardSistemaOperativo));
+
+  const mostrarCard = (e, card) => {
+    if(e.target.selectedIndex !== 0){
+      const seleccion = e.target.value;
+      const datos = seleccion.split("/");
+      const id = Number(datos[0].split(":")[1]);
+      const marca = datos[1];
+      const nombre = datos[2];
+      const precio = Number(datos[3].split("$")[1]);
+      const cantidad = Number(datos[4].split(":")[1]);
+
+      card.innerHTML = '';
+      card.innerHTML += `
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="/imgs/productos/${id}.jpg" class="img-fluid rounded mx-auto d-block" alt="Foto del producto">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="col-md-12">
+                <h4 class="fw-bold"> ${marca}® ${nombre}</h4>
+              </div>
+              <div class="col-md-4">
+                <h5>ID : ${id}</h5>
+              </div>
+              <div class="col-md-4">
+                <h5> Precio efectivo: ${formatearPeso.format(precio)}</h5>
+              </div>
+              <div class="col-md-4">
+                <h5>En stock: ${cantidad}</h5>
+              </div>
+                {{!-- <h5>ID : ${id}</h5><br>
+                <h5> Precio efectivo: ${formatearPeso.format(precio)}</h5><br>
+                <h5>En stock: ${cantidad}</h5> --}}
+              </div>
+            </div>
+          </div>
+        </div>`;  
+    }else{
+      card.innerHTML = '';
+    }
+  };
+  
+  function ready(fn) {
+  if (document.readyState != 'loading'){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+
+
+  const valores = {};
+  let sumaTotal = 0;
+
+  function agregarListeners(){
+    let listas = document.getElementsByTagName("select");
+
+    for(let i = 0; i < listas.length; i++){
+      listas[i].addEventListener("change", recolectarElegidos, false);
+    }
+  }
+
+  function recolectarElegidos(elemento){
+    let listaQueSeCambio = elemento.target;
+    console.log("lista que se cambio:", listaQueSeCambio);
+    let seleccionados = listaQueSeCambio.selectedOptions;
+    console.log("seleccioandos:", seleccionados);
+    let nombreLista = listaQueSeCambio.id;
+    console.log("nombre lista", nombreLista);
+    let temporal = [];
+
+    for(let i = 0; i < seleccionados.length; i++){
+      let productoSeleccionado = seleccionados[i].value;
+      console.log("valor seleccionado:", productoSeleccionado);
+      let idProducto = +productoSeleccionado.split("/")[0].split(":")[1];
+      console.log("id Producto",idProducto);
+      let precioProducto = +productoSeleccionado.split("/")[3].split("$")[1];
+      console.log(precioProducto);
+      let valorCantidad = 0;
+      console.warn(seleccionados[i].value);
+
+      let temp = {
+        producto: productoSeleccionado,
+        precio: valorCantidad = precioProducto,
+        idProducto: idProducto,
+      }
+
+      console.log(temp);
+      temporal.push(temp);
+      console.log("temporal",temporal);
+    }
+
+    valores[nombreLista]=temporal;
+    console.log(valores);
+    calcularSuma(valores);
+  }
+
+  function calcularSuma(valores){
+    let cantidad = 0;
+
+    for (let indice in valores){
+      for(let i = 0; i < valores[indice].length;i++){
+        cantidad += valores[indice][i].precio;
+      }
+    }
+
+    sumaTotal = cantidad;
+    console.log(sumaTotal);
+
+    mostrarElegidos();
+  }
+
+  function mostrarElegidos(){
+    let divResultados = document.getElementById("resultados");
+
+    divResultados.innerHTML = `
+    <strong>Total Efectivo: </strong>` + formatearPeso.format(sumaTotal);
+
+  }
+
+  ready(agregarListeners);
+
+  const formatearPeso = new Intl.NumberFormat('es-CL', {
+       style: 'currency',
+       currency: 'CLP',
+       minimumFractionDigits: 0
+     });
+    
+  btnEnviar.addEventListener("click", (evento)=> {
+    evento.preventDefault();
+    if( selectProcesador.selectedIndex == null || selectProcesador.selectedIndex == 0 ) {
+	  alert("Debe seleccionar una opción en el campo 'Procesador(CPU)'");
+	  return false;					
+    }
+    if( selectPlacaMadre.selectedIndex == null || selectPlacaMadre.selectedIndex == 0 ) {
+	  alert("Debe seleccionar una opción en el campo 'Placa Madre'");
+	  return false;					
+    }
+    if( selectRam.selectedIndex == null || selectRam.selectedIndex == 0 ) {
+	  alert("Debe seleccionar una opción en el campo 'Memoria Ram'");
+	  return false;					
+    }
+    if( selectM2.selectedIndex == null || selectM2.selectedIndex == 0 ) {
+	  alert("Debe seleccionar una opción en el campo 'Unidad M.2'");
+	  return false;					
+    }
+    if( selectSSD.selectedIndex == null || selectSSD.selectedIndex == 0 ) {
+	  alert("Debe seleccionar una opción en el campo 'Unidad SSD'");
+	  return false;					
+    }
+    if( selectDiscoDuro.selectedIndex == null || selectDiscoDuro.selectedIndex == 0 ) {
+	  alert("Debe seleccionar una opción en el campo 'Disco Duro'");
+	  return false;					
+    }
+    if( selectGabinete.selectedIndex == null || selectGabinete.selectedIndex == 0 ) {
+	  alert("Debe seleccionar una opción en el campo 'Gabinete'");
+	  return false;					
+    }
+
+    const idUsuario = +document.getElementById("idUsuario").value;
+    console.log(valores);
+    let datos = [];
+    for (let indice in valores){
+      for(let i = 0; i < valores[indice].length;i++){
+       const idProducto = valores[indice][i].idProducto;
+       datos.push( {idUsuario, idProducto});
+       
+      }
+    }
+    console.log(datos);
+    fetch("/solicitud", {
+            method: 'POST',
+            body: JSON.stringify(datos), 
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        }).then( (res) => {
+          console.log(res);
+            if(res.status == 201){
+              alert("Se ha enviado tu solicitud con éxito");
+            }
+            })
+        .catch( (error) => {
+          console.log(error);
+            alert("Error 500:", error);
+            })
+    
+  }) --}}
+
+</script>
+
+
