@@ -91,6 +91,162 @@ const actualizarUsuario = async(nombre, apellido, contacto, direccion, comuna, c
   return await pool.query(consulta);
 }
 
+//Se crean consultas para obtener listas de cada uno de los tipos de productos.
+
+const listarProcesador = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [1],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarPlacaMadre = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [2],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarMemoriaRAM = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [3],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarTarjetaGrafica = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [4],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarTarjetaDeRed = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [5],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarUnidadMDos = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [6],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarUnidadSSD = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [7],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarDiscoDuro = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [8],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarGabinete = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [10],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarFuenteDePoder = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [11],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarVentilador = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [12],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const listarRefrigeracion = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [13],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+const listarSistemaOperativo = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_tipo_producto = $1",
+    values: [14],
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+/* const crearSolicitud = async ( {idUsuario, idProducto}, idGlobal)=> {
+  
+    console.log("leyendo datos desde db:", idGlobal, idUsuario, idProducto);
+    const consulta = {
+      text: "INSERT INTO solicitudes (pedido_global, id_usuario, id_producto, esta_completado) VALUES ($1, $2, $3, $4) RETURNING *",
+      values: [idGlobal, idUsuario, idProducto, false ],
+    };
+    
+    const descontarStock = {
+      text: `UPDATE productos SET cantidad = cantidad - 1 WHERE id_producto= $1`,
+      values: [idProducto]
+  }
+
+  try{
+    await pool.query('BEGIN');
+    await pool.query(consulta);
+    await pool.query(descontarStock);
+    await pool.query('COMMIT');
+
+  } catch (error) {
+    await pool.query('ROLLBACK');
+    return error;
+  }
+} */
+
 //Se exportan las funciones para ser utilizadas en otros archivos
 module.exports = {
   listarCiudades,
@@ -101,5 +257,19 @@ module.exports = {
   obtenerUsuarioPorId,
   obtenercomunaPorId,
   obtenerCiudadPorId,
-  actualizarUsuario
+  actualizarUsuario,
+  listarPlacaMadre,
+  listarProcesador,
+  listarMemoriaRAM,
+  listarTarjetaGrafica,
+  listarTarjetaDeRed,
+  listarUnidadMDos,
+  listarUnidadSSD,
+  listarDiscoDuro,
+  listarGabinete,
+  listarVentilador,
+  listarRefrigeracion,
+  listarSistemaOperativo,
+  listarFuenteDePoder,
+  /* crearSolicitud */
 };
