@@ -35,7 +35,6 @@
             'Content-Type': 'application/json'
             }
         }).then( (res) => {
-            console.log(res);
             if(res.status === 400)alert ('Ingrese correo y contraseña!');
             if(res.status === 403)alert('Contraseña Erronea!');
             if(res.status === 404)alert('Usuario no registrado!');
