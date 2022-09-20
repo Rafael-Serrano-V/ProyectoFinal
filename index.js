@@ -1,12 +1,13 @@
 const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
+const { v4: uuidv4 } = require('uuid');
 const app = express();
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 /* const expressFileUpload = require("express-fileupload"); */
 const exphbs = require("express-handlebars");
-const { listarCiudades, listarComunas, obtenerUsuarioPorId, obtenercomunaPorId, obtenerCiudadPorId } = require("./src/services/db.service");
+const { listarCiudades, listarComunas, obtenerUsuarioPorId, obtenercomunaPorId, obtenerCiudadPorId, listarProcesador, listarPlacaMadre, listarMemoriaRAM, listarTarjetaGrafica, listarTarjetaDeRed, listarUnidadMDos, listarUnidadSSD, listarDiscoDuro, listarGabinete, listarFuenteDePoder, listarVentilador, listarRefrigeracion, listarSistemaOperativo, crearSolicitud } = require("./src/services/db.service");
 const { postLoginUsuario } = require("./src/controllers/usuarios.controllers");
 const { rutasUsuario } = require("./src/routes/usuarios.routes");
 const { cookieRutaProtegida } = require("./src/middlewares/cookie.middlewares");
@@ -50,7 +51,7 @@ app.get("/registro", async (req, res) => {
     const comunas = await listarComunas();
     res.render("registro", { ciudades, comunas });
   } catch (error) {
-    return res.status(500).send({
+    return res.status(500).json({
       error: `Algo salio mal...${error}`,
       code: 500,
     });
@@ -89,3 +90,59 @@ app.get("/home", cookieRutaProtegida, async (req, res) => {
 
 //Middleware que está usando la ruta /usuario y la ruta rutasUsuario.
 app.use("/usuario", rutasUsuario);
+
+/*Ruta que está protegida por un middleware que verifica si el usuario tiene una cookie llamada moonToken, si
+no lo tiene, redirige a la página de inicio de sesión, si lo tiene, muestra la vista del formulario para
+crear una computadora. */
+app.get("/armaTuComputador", cookieRutaProtegida ,async(req, res)=>{
+  try {
+    if(typeof validarToken(req.cookies.moonToken) == 'undefined'){
+      return res.redirect('/');
+    }
+    const { data } = validarToken(req.cookies.moonToken);
+    const usuario = await obtenerUsuarioPorId(data);
+    const { contrasenia: contra, ...restUsuario } = usuario;
+    const procesador = await listarProcesador();
+    const placaMadre = await listarPlacaMadre();
+    const memoriaRAM = await listarMemoriaRAM();
+    const tarjetaGrafica = await listarTarjetaGrafica();
+    const tarjetaDeRed = await listarTarjetaDeRed();
+    const unidadMDos = await listarUnidadMDos();
+    const unidadSSD = await listarUnidadSSD();
+    const discoDuro = await listarDiscoDuro();
+    const gabinete = await listarGabinete();
+    const fuenteDePoder = await listarFuenteDePoder();
+    const ventilador = await listarVentilador();
+    const refrigeracion = await listarRefrigeracion();
+    const sistemaOperativo = await listarSistemaOperativo();
+
+    res.render("solicitud", { procesador, placaMadre, memoriaRAM, tarjetaGrafica, tarjetaDeRed, unidadMDos, unidadSSD, discoDuro, gabinete, fuenteDePoder, ventilador, refrigeracion, sistemaOperativo, restUsuario });
+  } catch (error) {
+    return res.status(500).json({
+      error: `Algo salio mal...${error}`,
+      code: 500,
+    });
+  }
+});
+
+  //Solicitud POST que recibe datos del formulario de solicitud y los envía a la base de datos.
+  app.post("/solicitud", async(req, res) => {
+    try {
+      const idGlobal = uuidv4().split("-")[0];
+      const datos = {...req.body};
+      for (let clave in datos){
+        await crearSolicitud( datos[clave], idGlobal);
+        
+      }
+      res.status(201).json( {mensaje:"solicitud creada!"});
+    } catch (error) {
+      return res.status(500).json({
+        error: `Algo salio mal...${error}`,
+        codigo: 500,
+      })
+    }
+    
+  
+});
+
+

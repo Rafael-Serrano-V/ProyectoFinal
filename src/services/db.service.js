@@ -222,9 +222,9 @@ const listarSistemaOperativo = async ()=>{
   return resultado.rows;
 }
 
-/* const crearSolicitud = async ( {idUsuario, idProducto}, idGlobal)=> {
+//Crea una nueva fila en la tabla de solicitudes, y luego disminuye el stock del producto.
+const crearSolicitud = async ( {idUsuario, idProducto}, idGlobal)=> {
   
-    console.log("leyendo datos desde db:", idGlobal, idUsuario, idProducto);
     const consulta = {
       text: "INSERT INTO solicitudes (pedido_global, id_usuario, id_producto, esta_completado) VALUES ($1, $2, $3, $4) RETURNING *",
       values: [idGlobal, idUsuario, idProducto, false ],
@@ -245,7 +245,7 @@ const listarSistemaOperativo = async ()=>{
     await pool.query('ROLLBACK');
     return error;
   }
-} */
+}
 
 //Se exportan las funciones para ser utilizadas en otros archivos
 module.exports = {
@@ -271,5 +271,5 @@ module.exports = {
   listarRefrigeracion,
   listarSistemaOperativo,
   listarFuenteDePoder,
-  /* crearSolicitud */
+  crearSolicitud
 };
