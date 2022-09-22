@@ -1,0 +1,50 @@
+<body>
+    <div class="container w-75 bg-primary mt-5 rounded shadow">
+        <div class="row align-items-stretch">
+            <div class="col bg-white p-5 rounded">
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-3 mt-3">
+                        <h2>Mantenedor Usuarios:</h2>
+                    </div>
+                    <div class="col-12 col-md-6 d-grid justify-content-md-end pt-3 pb-3">
+                        
+                        <a href="/home" class="btn btn-primary col-12 mx-auto">Volver atrás</a>
+                    </div>       
+                </div>
+                <div class="table-responsive table-responsive-sm table-responsive-md table-responsive-lg">
+                    <table class="table table-success table-striped table-bordered border-primary">
+                        <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Nombre</th>
+                              <th scope="col">Apellido</th>
+                              <th scope="col">Correo electrónico</th>
+                              <th scope="col">¿Está activo?</th>
+                              <th scope="col">Dar administrador</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each usuarios}}
+                            <tr>
+                              <th scope="row">{{@index}}</th>
+                              <td>{{this.nombre}}</td>
+                              <td>{{this.apellido}}</td>
+                              <td>{{this.email}}</td>
+                              <td>{{#if this.esta_activo}}<input type="checkbox"  checked  onclick="cambiarActivo({{this.id_usuario}},this)"> <label class="text-success fw-bold">Activo</label>{{else}}
+                              <input type="checkbox" onclick="cambiarActivo({{this.id_usuario}},this)"> <label class="text-danger fw-bold">No Activo</label>{{/if}}</td>
+                              <td>{{#if this.es_admin}}<input type="checkbox"  checked  onclick="cambiarAdmin({{this.id_usuario}},this)"> <label class="text-success fw-bold">Es administrador</label>{{else}}
+                              <input type="checkbox" onclick="cambiarAdmin({{this.id_usuario}},this)"> <label class="text-danger fw-bold">No es administrador</label>{{/if}}</td>
+                              
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                  </div>
+            </div>
+            
+                
+            
+        </div>
+    </div>
+</body>
