@@ -222,6 +222,8 @@ const listarSistemaOperativo = async ()=>{
   return resultado.rows;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////
+
 //Crea una nueva fila en la tabla de solicitudes, y luego disminuye el stock del producto.
 const crearSolicitud = async ( {idUsuario, idProducto}, idGlobal)=> {
   
@@ -245,6 +247,38 @@ const crearSolicitud = async ( {idUsuario, idProducto}, idGlobal)=> {
     await pool.query('ROLLBACK');
     return error;
   }
+}
+
+//Devuelve todas las filas de la tabla "solicitudes" donde la columna "id_usuario" es igual al parámetro idUsuario.
+const solicitudesPorIdUsuario = async(idUsuario)=>{
+  const consulta = {
+    text: "SELECT * FROM solicitudes WHERE id_usuario=$1",
+    values: [idUsuario]
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+//Devuelve las filas de una tabla llamada "solicitudes" donde la columna "pedido_global" es igual al parámetro idGlobal.
+const solicitudPorIdGlobal = async(idGlobal)=>{
+  const consulta = {
+    text: "SELECT * FROM solicitudes WHERE pedido_global=$1",
+    values: [idGlobal]
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+//Devuelve el nombre, marca, precio y foto de un producto que se encuentra en un pedido global.
+const productosPorIDGlobal = async(id) => {
+  const consulta = {
+    text: "SELECT nombre, marca, precio, foto FROM productos INNER JOIN solicitudes ON productos.id_producto = solicitudes.id_producto WHERE pedido_global=$1",
+    values: [id]
+  }
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
 }
 
 //Se exportan las funciones para ser utilizadas en otros archivos
@@ -271,5 +305,9 @@ module.exports = {
   listarRefrigeracion,
   listarSistemaOperativo,
   listarFuenteDePoder,
-  crearSolicitud
+  crearSolicitud,
+  solicitudesPorIdUsuario,
+  solicitudPorIdGlobal,
+  productosPorIDGlobal
+
 };
