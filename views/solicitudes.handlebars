@@ -1,0 +1,144 @@
+<body>
+    <div class="container w-75 bg-primary mt-5 rounded shadow">
+        <div class="row align-items-stretch">
+            <div class="col bg-white p-5 rounded">
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-3 mt-3">
+                        <h2>Mis Solicitudes:</h2>
+                    </div>
+                    <div class="col-12 col-md-6 d-grid gap-2 d-md-flex  justify-content-md-end pt-3 pb-3">
+                        
+                        <a href="/home" class="btn btn-outline-primary">Mi Perfil</a>
+                        <a href="/armaTuComputador" class="btn btn-outline-primary">Arma tu computador</a>
+                    </div>
+                    {{#unless idGlobalUnico}}
+                    <h3> Sin Solicitudes registradas!</h3>
+                    {{/unless}}
+                    {{#each idGlobalUnico}}
+                    <div class="table-responsive table-responsive-sm table-responsive-md table-responsive-lg">
+                        <table class="table table-success table-striped table-bordered border-primary" id="{{this}}">
+                            <thead>
+                            <tr>
+                                <th colspan="4">Código de Solicitud: <label class="text-primary">{{this}}</label>  <button class="btn btn-primary btnDetalle" type="button" id="{{this}}">Ver detalle</button></th>
+                            </tr>
+                        </thead>
+                        </table>
+                    </div>
+                    {{/each}}
+            </div>
+            
+                
+            
+        </div>
+    </div>
+</body>
+<script>
+    {{!-- const tablas = document.getElementsByTagName("table");
+    const cuerpoTablas = document.getElementsByTagName("tbody");
+    const headTablas = document.getElementsByTagName("thead");
+
+// Da formato al número a un formato de moneda.
+  const formatearPeso = new Intl.NumberFormat('es-CL', {
+       style: 'currency',
+       currency: 'CLP',
+       minimumFractionDigits: 0
+     });
+
+const obtenerSolicitudesPorId = async (evento,idPedido) => {
+    console.log("id al dar click:",idPedido);
+    const response = await fetch(`/solicitudes/${idPedido}`);
+    console.log(response);
+    let data = await response.json();
+    console.log( "datos", data.detalleProducto);
+
+    const productos = data.detalleProducto;
+    const solicitudes = data.solicitud;
+
+    
+
+    const tablaCorrecta = Array.from(tablas).filter(tabla => tabla.id === idPedido)
+    const tabla = tablaCorrecta[0];
+
+    tabla.innerHTML = "";
+    tabla.innerHTML += `
+                <table class="table table-success table-striped table-bordered border-primary" id="${idPedido}">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Código de Solicitud: <label class="text-primary">${idPedido}</label> <button class="btn btn-primary btnDetalle" type="button" id="${idPedido}" hidden>Ver detalle</button></th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Foto Referencia</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo${idPedido}">
+                    </tbody>
+                    <thead id="head${idPedido}">
+                    </thead>
+
+                </table>
+            </div>`
+    
+    const cuerpoTablaCorrecto = Array.from(cuerpoTablas).filter(cuerpo => cuerpo.id === "cuerpo"+idPedido);
+    const cuerpo = cuerpoTablaCorrecto[0];
+    console.log(cuerpo);
+
+
+    
+    let acumulador = 0;
+    for (indice in productos){
+        
+        
+
+        acumulador = acumulador + productos[indice].precio;
+
+        
+        cuerpo.innerHTML += `
+        <tr>
+            <td><img src="" alt="Foto no encontrada" width="80px" height="80px"></td>
+            <td>${productos[indice].marca}® / ${productos[indice].nombre}</td>
+            <td>` + formatearPeso.format(productos[indice].precio) + `</td>
+        </tr>`
+         
+    };
+    console.log(acumulador);
+
+    const headTablaCorrecto = Array.from(headTablas).filter(head => head.id === "head"+idPedido);
+    const head = headTablaCorrecto[0];
+
+    let estado = false;
+    for (indice in solicitudes){
+        
+        if(solicitudes[indice].esta_completado){
+            estado = true;
+        }else{
+            estado = false;
+        }
+    }
+    console.log(estado);
+    if(estado){
+        head.innerHTML += `
+        <tr>
+            <th colspan="2">Estado: <label class="text-success font-weight-bold">Completado</label></th>
+            <th colspan="2">Precio Total: <label class="fw-bold">` + formatearPeso.format(acumulador) + `</label></th>
+        </tr>`
+    }else{
+         head.innerHTML += `
+        <tr>
+            <th colspan="2">Estado: <label class="text-danger font-weight-bold">Pendiente</label></th>
+            <th colspan="2">Precio Total: <label class="fw-bold">` + formatearPeso.format(acumulador) + `</label></th>
+        </tr>`
+    }
+}
+
+    (function agregarListeners(){
+    let btnsDetalle = document.getElementsByClassName("btnDetalle");
+    console.log(btnsDetalle);
+    for(let i = 0; i < btnsDetalle.length; i++){
+        console.log(btnsDetalle[i].id);
+      btnsDetalle[i].addEventListener("click",(evento) => obtenerSolicitudesPorId(evento, btnsDetalle[i].id), false);
+    }
+  })(); --}}
+
+</script>
