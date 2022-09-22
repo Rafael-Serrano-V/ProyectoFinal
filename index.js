@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 /* const expressFileUpload = require("express-fileupload"); */
 const exphbs = require("express-handlebars");
-const { listarCiudades, listarComunas, obtenerUsuarioPorId, obtenercomunaPorId, obtenerCiudadPorId, listarProcesador, listarPlacaMadre, listarMemoriaRAM, listarTarjetaGrafica, listarTarjetaDeRed, listarUnidadMDos, listarUnidadSSD, listarDiscoDuro, listarGabinete, listarFuenteDePoder, listarVentilador, listarRefrigeracion, listarSistemaOperativo, crearSolicitud, solicitudesPorIdUsuario, solicitudPorIdGlobal, productosPorIDGlobal } = require("./src/services/db.service");
+const { listarCiudades, listarComunas, obtenerUsuarioPorId, obtenercomunaPorId, obtenerCiudadPorId, listarProcesador, listarPlacaMadre, listarMemoriaRAM, listarTarjetaGrafica, listarTarjetaDeRed, listarUnidadMDos, listarUnidadSSD, listarDiscoDuro, listarGabinete, listarFuenteDePoder, listarVentilador, listarRefrigeracion, listarSistemaOperativo, crearSolicitud, solicitudesPorIdUsuario, solicitudPorIdGlobal, productosPorIDGlobal, obtenerUsuariosDB, modificarActivoUsuario, modificarAdminUsuario } = require("./src/services/db.service");
 const { postLoginUsuario } = require("./src/controllers/usuarios.controllers");
 const { rutasUsuario } = require("./src/routes/usuarios.routes");
 const { cookieRutaProtegida } = require("./src/middlewares/cookie.middlewares");
@@ -66,10 +66,38 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
+
+/* Ruta que está protegida por un middleware que verifica si el usuario tiene una cookie llamada moonToken,
+si no lo tiene, redirige a la página de inicio de sesión, si lo tiene, renderiza el mantenedor de usuarios */ 
+app.get("/mantenedorUsuarios", cookieRutaProtegida, async (req, res) => {
+  try {
+    if (typeof validarToken(req.cookies.moonToken) == "undefined") {
+      return res.redirect("/");
+    }
+    const { data } = validarToken(req.cookies.moonToken);
+    const usuario = await obtenerUsuarioPorId(data);
+    if (usuario.es_admin) {
+      const usuarios = await obtenerUsuariosDB();
+      res.render("mantenedorUsuarios", { usuarios });
+    }
+    if (!usuario.es_admin) {
+      res.redirect("/");
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: `Algo salio mal...${error}`,
+      code: 500,
+    });
+  }
+});
+
 //Ruta que se le pasa un middleware para proteger vistas de administrador y usuario
 app.get("/home", cookieRutaProtegida, async (req, res) => {
   
   try {
+    if(typeof validarToken(req.cookies.moonToken) == 'undefined'){
+      return res.redirect('/');
+    }
     const { data } = validarToken(req.cookies.moonToken);
     const usuario = await obtenerUsuarioPorId(data);
     const { contrasenia: contra, ...restUsuario } = usuario;
@@ -90,6 +118,34 @@ app.get("/home", cookieRutaProtegida, async (req, res) => {
 
 //Middleware que está usando la ruta /usuario y la ruta rutasUsuario.
 app.use("/usuario", rutasUsuario);
+
+/* Ruta que se utiliza para activar o desactivar un usuario. */ 
+app.put("/activar", async (req, res) => {
+  const { id, estaActivo } = req.body;
+  try {
+    const usuario = await modificarActivoUsuario(id, estaActivo);
+    res.status(200).json( {usuario});
+  } catch (error) {
+    res.status(500).json({
+      error: `Algo salio mal...${error}`,
+      code: 500,
+    });
+  }
+});
+
+/* Ruta que se utiliza para dar y quitar ROL de administrador. */
+app.put("/rol", async (req, res) => {
+  const { id, esAdmin} = req.body;
+  try {
+    const usuario = await modificarAdminUsuario(id, esAdmin);
+    res.status(200).json(usuario);
+  } catch (error) {
+    res.status(500).json({
+      error: `Algo salio mal...${error}`,
+      code: 500,
+    });
+  }
+});
 
 /*Ruta que está protegida por un middleware que verifica si el usuario tiene una cookie llamada moonToken, si
 no lo tiene, redirige a la página de inicio de sesión, si lo tiene, muestra la vista del formulario para

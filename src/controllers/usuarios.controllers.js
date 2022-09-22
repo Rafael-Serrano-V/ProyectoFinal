@@ -65,30 +65,6 @@ const modificarUsuario = async(req, res) => {
   }
 }
 
-/* const obtenerUsuarios = async (req, res) => {
-      try {
-        const token = req.headers.authorization.split(" ").pop();
-        console.log(token);
-        const datosToken = await validarToken(token);
-        console.log(datosToken);
-        const usuario = await obtenerUsuarioPorId(datosToken.data);
-        console.log(usuario);
-        if (!usuario)
-          return res.status(404).json({ error: "Usuario no encontrado" });
-        if (!usuario.esta_activo)
-          return res.status(403).json({ error: "Cuenta sin acceso" });
-
-          const usuarios = await obtenerUsuariosDB();
-          const usuariosSeguros = usuarios.map((usuario) => {
-            const { contrasenia, ...restUsuario } = usuario;
-            return restUsuario;
-          });
-          res.status(200).json({ usuarios: usuariosSeguros });
-      } catch (error) {
-        res.status(500).json({error: error.message});
-      }
-    }; */
-
 //Se exportan las funciones para ser utilizados por otros archivos.
 module.exports = {
   crearUsuario,

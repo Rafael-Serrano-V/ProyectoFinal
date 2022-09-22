@@ -48,3 +48,49 @@
         </div>
     </div>
 </body>
+<script>
+  // Función que se llama cuando se hace click en la casilla chekcbox. Envía una solicitud al servidor para cambiar el valor del estado activo del usuario.
+  const cambiarActivo = async(id, inputCheckbox) => {
+    const estaActivo = inputCheckbox.checked;
+
+    const datos = { id, estaActivo }
+
+    await fetch("/activar", {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos),
+            }).then(res => {
+                if(res.status === 200){
+                    
+                    alert(estaActivo ? "Usuario habilitado" : "Usuario deshabilitado");
+                    location.reload();
+                }
+            }).catch(err => alert(err));
+      
+    }
+
+
+    // Función que se llama cuando se hace click en la casilla chekcbox. Envía una solicitud al servidor para cambiar el valor rol de administrador del usuario.
+    const cambiarAdmin = async(id, inputCheckbox) => {
+    const esAdmin = inputCheckbox.checked;
+
+    const datos = { id, esAdmin }
+
+    await fetch("/rol", {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos),
+            }).then(res => {
+                if(res.status === 200){
+                    
+                    alert(esAdmin ? "Usuario con rol de administrador" : "Usuario sin rol de administrador");
+                    location.reload();
+                }
+            }).catch(err => alert(err));
+    }
+      
+</script>
