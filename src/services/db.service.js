@@ -66,10 +66,35 @@ const obtenerUsuarioPorCorreo = async (correo) => {
 };
 
 
-/* const obtenerUsuariosDB = async () => {
+//Devuelve una promesa que se resuelve en una matriz de objetos con los usuarios de la base de datos.
+const obtenerUsuariosDB = async () => {
   const resultado = await pool.query("SELECT * FROM usuarios");
   return resultado.rows;
-}; */
+};
+
+//Toma un ID que representa el id_usuario y un valor booleano que representa la activacion y actualiza la base de datos con el valor booleano.
+//modifica la actividad del usuario.
+const modificarActivoUsuario = async(id, estaActivo)=>{
+  const consulta = {
+      text: "UPDATE usuarios SET esta_activo=$1 WHERE id_usuario=$2 RETURNING *",
+      values: [estaActivo, id],
+  }
+
+  const result = await pool.query(consulta);
+  return result.rows[0];
+}
+
+//Toma un ID que representa el id_usuario y un valor booleano que representa si es administrador y actualiza la base de datos con el valor booleano.
+//modifica el rol de administrador.
+const modificarAdminUsuario = async(id, esAdmin)=>{
+  const consulta = {
+      text: "UPDATE usuarios SET es_admin=$1 WHERE id_usuario=$2 RETURNING *",
+      values: [esAdmin, id],
+  }
+
+  const result = await pool.query(consulta);
+  return result.rows[0];
+}
 
 //Toma el id del usuario como argumento y devuelve una promesa que se resuelve en un objeto con los datos del usuario.
 const obtenerUsuarioPorId = async (id) => {
@@ -287,7 +312,7 @@ module.exports = {
   listarComunas,
   crearUsuarioDB,
   obtenerUsuarioPorCorreo,
-  //obtenerUsuariosDB,
+  obtenerUsuariosDB,
   obtenerUsuarioPorId,
   obtenercomunaPorId,
   obtenerCiudadPorId,
@@ -308,6 +333,8 @@ module.exports = {
   crearSolicitud,
   solicitudesPorIdUsuario,
   solicitudPorIdGlobal,
-  productosPorIDGlobal
+  productosPorIDGlobal,
+  modificarActivoUsuario,
+  modificarAdminUsuario
 
 };
