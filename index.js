@@ -102,6 +102,9 @@ app.get("/armaTuComputador", cookieRutaProtegida ,async(req, res)=>{
     const { data } = validarToken(req.cookies.moonToken);
     const usuario = await obtenerUsuarioPorId(data);
     const { contrasenia: contra, ...restUsuario } = usuario;
+    if(restUsuario.es_admin){
+      res.status(401).redirect('/');
+    }
     const procesador = await listarProcesador();
     const placaMadre = await listarPlacaMadre();
     const memoriaRAM = await listarMemoriaRAM();
