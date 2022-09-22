@@ -33,7 +33,8 @@
     </div>
 </body>
 <script>
-    {{!-- const tablas = document.getElementsByTagName("table");
+    // Se obtienen todas las tablas, tbody y thead elementos en la página.
+    const tablas = document.getElementsByTagName("table");
     const cuerpoTablas = document.getElementsByTagName("tbody");
     const headTablas = document.getElementsByTagName("thead");
 
@@ -44,12 +45,11 @@
        minimumFractionDigits: 0
      });
 
+// Esta función se llama cuando el usuario hace clic en el botón "Ver detalle".
+//Esta función es responsable de realizar una solicitud al servidor para obtener los detalles del pedido.
 const obtenerSolicitudesPorId = async (evento,idPedido) => {
-    console.log("id al dar click:",idPedido);
     const response = await fetch(`/solicitudes/${idPedido}`);
-    console.log(response);
     let data = await response.json();
-    console.log( "datos", data.detalleProducto);
 
     const productos = data.detalleProducto;
     const solicitudes = data.solicitud;
@@ -82,7 +82,6 @@ const obtenerSolicitudesPorId = async (evento,idPedido) => {
     
     const cuerpoTablaCorrecto = Array.from(cuerpoTablas).filter(cuerpo => cuerpo.id === "cuerpo"+idPedido);
     const cuerpo = cuerpoTablaCorrecto[0];
-    console.log(cuerpo);
 
 
     
@@ -102,7 +101,6 @@ const obtenerSolicitudesPorId = async (evento,idPedido) => {
         </tr>`
          
     };
-    console.log(acumulador);
 
     const headTablaCorrecto = Array.from(headTablas).filter(head => head.id === "head"+idPedido);
     const head = headTablaCorrecto[0];
@@ -116,7 +114,7 @@ const obtenerSolicitudesPorId = async (evento,idPedido) => {
             estado = false;
         }
     }
-    console.log(estado);
+
     if(estado){
         head.innerHTML += `
         <tr>
@@ -132,13 +130,12 @@ const obtenerSolicitudesPorId = async (evento,idPedido) => {
     }
 }
 
+    // IFE que añade evento click a los botones con la clase "btnDetalle".
     (function agregarListeners(){
     let btnsDetalle = document.getElementsByClassName("btnDetalle");
-    console.log(btnsDetalle);
     for(let i = 0; i < btnsDetalle.length; i++){
-        console.log(btnsDetalle[i].id);
       btnsDetalle[i].addEventListener("click",(evento) => obtenerSolicitudesPorId(evento, btnsDetalle[i].id), false);
     }
-  })(); --}}
+  })();
 
 </script>

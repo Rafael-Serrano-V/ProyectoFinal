@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 /* const expressFileUpload = require("express-fileupload"); */
 const exphbs = require("express-handlebars");
-const { listarCiudades, listarComunas, obtenerUsuarioPorId, obtenercomunaPorId, obtenerCiudadPorId, listarProcesador, listarPlacaMadre, listarMemoriaRAM, listarTarjetaGrafica, listarTarjetaDeRed, listarUnidadMDos, listarUnidadSSD, listarDiscoDuro, listarGabinete, listarFuenteDePoder, listarVentilador, listarRefrigeracion, listarSistemaOperativo, crearSolicitud } = require("./src/services/db.service");
+const { listarCiudades, listarComunas, obtenerUsuarioPorId, obtenercomunaPorId, obtenerCiudadPorId, listarProcesador, listarPlacaMadre, listarMemoriaRAM, listarTarjetaGrafica, listarTarjetaDeRed, listarUnidadMDos, listarUnidadSSD, listarDiscoDuro, listarGabinete, listarFuenteDePoder, listarVentilador, listarRefrigeracion, listarSistemaOperativo, crearSolicitud, solicitudesPorIdUsuario, solicitudPorIdGlobal, productosPorIDGlobal } = require("./src/services/db.service");
 const { postLoginUsuario } = require("./src/controllers/usuarios.controllers");
 const { rutasUsuario } = require("./src/routes/usuarios.routes");
 const { cookieRutaProtegida } = require("./src/middlewares/cookie.middlewares");
@@ -141,8 +141,43 @@ app.get("/armaTuComputador", cookieRutaProtegida ,async(req, res)=>{
         codigo: 500,
       })
     }
-    
+});
+
+/* Ruta que está protegida por un middleware que verifica si el usuario tiene una cookie llamada moonToken,
+si no lo tiene, redirige a la página de inicio de sesión, si lo tiene, muestra la vista de las solicitudes. */
+app.get("/misSolicitudes", cookieRutaProtegida, async (req, res) => {
+  try {
+    if (typeof validarToken(req.cookies.moonToken) == "undefined") {
+      return res.redirect("/");
+    }
+    const { data } = validarToken(req.cookies.moonToken);
+    const solicitudes = await solicitudesPorIdUsuario(data);
   
+    const listaIdGlobal = solicitudes.map((s) => {
+      return s.pedido_global;
+    });
+    idGlobalUnico = [...new Set(listaIdGlobal)];
+    res.render("solicitudes", {idGlobalUnico});
+  } catch (error) {
+    res.status(500).json( { error: error});
+  }
+});
+
+/*Ruta que está protegida por un middleware que verifica si el usuario tiene una cookie llamada moonToken,
+si no lo tiene, redirige a la página de inicio de sesión, si lo tiene, envia las peticiones al front.*/
+app.get("/solicitudes/:id",cookieRutaProtegida, async (req, res) => {
+  try {
+    if (typeof validarToken(req.cookies.moonToken) == "undefined") {
+      return res.redirect("/");
+    }
+    const { id } = req.params;
+    const detalleProducto = await productosPorIDGlobal(id);
+    const solicitud = await solicitudPorIdGlobal(id);
+    res.status(200).json( {detalleProducto, solicitud} );
+  }catch(error){
+    res.status(500).json( {error: error });
+  }
+
 });
 
 
