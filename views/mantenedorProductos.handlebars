@@ -1,0 +1,505 @@
+<div class="container bg-white mt-5 rounded shadow pb-3 w-75">
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3 mt-3">
+        <h2>Mantenedor Productos:</h2>
+      </div>
+      <div class="col-12 col-md-6 d-grid gap-2 d-md-flex  justify-content-md-end pt-3 pb-3">
+        
+        <a href="/home" class="btn btn-primary">Volver atrás</a>
+        
+      </div>
+      
+    </div>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingCrear">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseCrear" aria-expanded="false" aria-controls="panelsStayOpen-collapseCrear">
+          Crear Nuevo Producto
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseCrear" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingCrear">
+          <div class="accordion-body">
+            <div id="contenedorCarta">
+              <div class="card mb-3 border-primary">
+                <div class="row g-0">
+                  <div class="col-12 col-md-4 col-ms-12">
+                    <label class="fw-bold">Subir foto del producto:</label>
+                    <img class="img-fluid rounded-start mx-auto d-block" alt="Foto de producto" id="imgPrevisualizacion" width="250rem" height="250rem">
+                    <input class="btn btn-primary col-12" type="file" accept="image/png, .jpeg, .jpg" id="inputImg">
+                    
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="card-body">
+                      <div class="row justify-content-center align-items-center">
+                        <label class="fw-bold">Tipo Producto:</label>
+                        <select class="form-select form-select border-primary" aria-label=".form-select-lg example" id="selectTipoProducto">
+                          <option selected value="0">Selecciona Tipo Producto</option>
+                          {{#each tipoProductos}}
+                          <option value="{{this.id_tipo_producto}}">{{this.nombre}}</option>
+                          {{/each}}
+                        </select>
+                        <label class="fw-bold">Nombre Producto:</label>
+                        <input class="col-12 form-control border-primary" type="text"  id="nombreNuevoProducto">
+                        <label class="fw-bold">Marca:</label>
+                        <input class="col-12 form-control border-primary" type="text" id="marcaNuevoProducto">
+                        <label class="fw-bold">Precio:</label>
+                        <input class="border-primary form-control" type="number" id="precioNuevoProducto">   
+                        <label class="fw-bold">Cantidad:</label> 
+                        <input class="border-primary form-control" type="number" id="cantidadNuevoProducto">
+                      </div>
+                      <div class="mt-3 row align-content-center">
+                        <button class="btn btn-primary col-12" id="btnCrear">Crear Producto</button>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>               
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2>Modificación y eliminición:</h2>
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button class="accordion-button fw-bold bg-primary text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+          Piezas básicas
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
+            <div id="contenedorSelectProcesador">
+                <label class="fw-bold">Procesador (CPU)</label>
+                <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectProcesador">
+                    <option selected value="0">Selecciona Procesador(CPU)</option>
+                    {{#each procesador}}
+                    {{#if this.esta_activo}}
+                    <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                    {{/if}}
+                    {{/each}}
+                </select>
+                <div id="cardProcesador" class="card mb-3 border-primary" >
+                </div>
+            </div>
+            <div id="contenedorSelectPlacaMadre">
+              <label class="fw-bold">Placa Madre</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectPlacaMadre">
+                <option selected value="0">Selecciona Placa Madre</option>
+                {{#each placaMadre}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardPlacaMadre" class="card mb-3 border-primary" >
+              </div>
+            </div>
+            <div id="contenedorSelectRam">
+              <label class="fw-bold">Memoria RAM</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectRam">
+                <option selected value="0">Selecciona Memoria RAM</option>
+                {{#each memoriaRAM}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardMemoriaRam" class="card mb-3 border-primary" >
+              </div>
+            </div>
+            <div id="contenedorSelectVideo">
+              <label class="fw-bold">Tarjeta Gráfica</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectVideo">
+                <option selected value="0">Selecciona Tarjeta Gráfica</option>
+                {{#each tarjetaGrafica}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardTarjetaGrafica" class="card mb-3 border-primary" >
+              </div>
+            </div>
+            <div id="contenedorSelectTarjetaRed">
+              <label class="fw-bold">Tarjeta de Red</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectTarjetaRed">
+                <option selected>Selecciona Tarjeta de Red</option>
+                tarjetaDeRed
+                {{#each tarjetaDeRed}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardTarjetaRed" class="card mb-3 border-primary" >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          Almacenamiento
+         </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            <div id="contenedorSelectM2">
+              <label class="fw-bold">Unidad M.2</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectM2">
+                <option selected value="0">Selecciona Unidad M.2</option>
+                {{#each unidadMDos}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardUnidadM2" class="card mb-3 border-primary" >
+              </div>
+            </div>
+            <div id="contenedorSSD">
+              <label class="fw-bold">Unidad SSD</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectSSD">
+                <option selected value="0">Selecciona Unidad SSD</option>
+                {{#each unidadSSD}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardSSD" class="card mb-3 border-primary" >
+              </div>
+            </div>
+            <div id="contenedorDiscoDuro">
+              <label class="fw-bold">Disco Duro</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectDiscoDuro">
+                <option selected value="0">Selecciona Disco Duro</option>
+                {{#each discoDuro}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardDiscoDuro" class="card mb-3 border-primary" >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+          Gabinete
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+          <div class="accordion-body">
+            <div id="contenedorGabinete">
+              <label class="fw-bold">Gabinete</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectGabinete">
+                <option selected value="0">Selecciona Gabinete</option>
+                {{#each gabinete}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardGabinete" class="card mb-3 border-primary" >
+              </div>
+            </div>               
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+          Energía y Refrigeración
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+          <div class="accordion-body">
+            <div id="contenedorFuenteDePoder">
+              <label class="fw-bold">Fuente de Poder</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectFuenteDePoder">
+                <option selected value="0">Selecciona Fuente de Poder</option>
+                {{#each fuenteDePoder}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardFuenteDePoder" class="card mb-3 border-primary" >
+              </div>
+            </div>
+            <div id="contenedorVentilador">
+              <label class="fw-bold">Ventilador</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectVentilador">
+                <option selected value="0">Selecciona Ventilador</option>
+                {{#each ventilador}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardVentilador" class="card mb-3 border-primary" >
+              </div>
+            </div>
+            <div id="contenedorRefrigeracion">
+              <label class="fw-bold">Refrigeración CPU</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectRefrigeracion">
+                <option selected value="0">Selecciona Refrigeración CPU</option>
+                {{#each refrigeracion}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardRefrigeracion" class="card mb-3 border-primary" >
+              </div>
+            </div>                        
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+          <button class="accordion-button collapsed fw-bold bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+          Sistema Operativo
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+          <div class="accordion-body">
+            <div id="contenedorSistemaOperativo">
+              <label class="fw-bold">Sistema Operativo</label>
+              <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectSistemaOperativo">
+                <option selected value="0">Selecciona Sistema Operativo</option>
+                {{#each sistemaOperativo}}
+                <option value="{{this.id_producto}}"> ({{this.id_producto}}) / {{this.nombre}}</option>
+                {{/each}}
+              </select>
+              <div id="cardSistemaOperativo" class="card mb-3 border-primary" >
+              </div>
+            </div>                 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const formData = new FormData();
+    const form = new FormData();
+    const inputImg = document.getElementById("inputImg");
+    const imgPrevisualizacion = document.getElementById("imgPrevisualizacion");
+    const btnCrear =  document.getElementById("btnCrear");
+
+    const selectProcesador = document.getElementById("selectProcesador");
+    const cardProcesador= document.getElementById("cardProcesador");
+    const selectPlacaMadre = document.getElementById("selectPlacaMadre");
+    const cardPlacaMadre = document.getElementById("cardPlacaMadre");
+    const selectRam = document.getElementById("selectRam");
+    const cardMemoriaRam = document.getElementById("cardMemoriaRam");
+    const selectVideo = document.getElementById("selectVideo");
+    const cardTarjetaGrafica = document.getElementById("cardTarjetaGrafica");
+    const selectTarjetaRed = document.getElementById("selectTarjetaRed");
+    const cardTarjetaRed = document.getElementById("cardTarjetaRed");
+    const selectM2 = document.getElementById("selectM2");
+    const cardUnidadM2 = document.getElementById("cardUnidadM2");
+    const selectSSD = document.getElementById("selectSSD");
+    const cardSSD = document.getElementById("cardSSD");
+    const selectDiscoDuro = document.getElementById("selectDiscoDuro");
+    const cardDiscoDuro = document.getElementById("cardDiscoDuro");
+    const selectGabinete = document.getElementById("selectGabinete");
+    const cardGabinete = document.getElementById("cardGabinete");
+    const selectFuenteDePoder = document.getElementById("selectFuenteDePoder");
+    const cardFuenteDePoder = document.getElementById("cardFuenteDePoder");
+    const selectVentilador = document.getElementById("selectVentilador");
+    const cardVentilador = document.getElementById("cardVentilador");
+    const selectRefrigeracion = document.getElementById("selectRefrigeracion");
+    const cardRefrigeracion = document.getElementById("cardRefrigeracion");
+    const selectSistemaOperativo = document.getElementById("selectSistemaOperativo");
+    const cardSistemaOperativo = document.getElementById("cardSistemaOperativo");
+
+    // Agrega un detector de eventos a cada elemento seleccionado. El detector de eventos está escuchando
+    // para un evento de cambio. Cuando se dispara el evento de cambio, se llama a la función mostrarCard.
+    // La función mostrarCard toma dos parámetros, el evento y la tarjeta. El evento es el evento que
+    // activó la función. La tarjeta es la tarjeta que se va a mostrar.
+    selectProcesador.addEventListener("change", (evento)=> mostrarCard(evento, cardProcesador));
+    selectPlacaMadre.addEventListener("change", (evento)=> mostrarCard(evento, cardPlacaMadre));
+    selectRam.addEventListener("change",(evento)=> mostrarCard(evento, cardMemoriaRam));
+    selectVideo.addEventListener("change", (evento) => mostrarCard(evento, cardTarjetaGrafica));
+    selectTarjetaRed.addEventListener("change", (evento) => mostrarCard(evento, cardTarjetaRed));
+    selectM2.addEventListener("change", (evento) => mostrarCard(evento, cardUnidadM2));
+    selectSSD.addEventListener("change", (evento) => mostrarCard(evento, cardSSD));
+    selectDiscoDuro.addEventListener("change", (evento) => mostrarCard(evento, cardDiscoDuro));
+    selectGabinete.addEventListener("change", (evento) => mostrarCard(evento, cardGabinete));
+    selectFuenteDePoder.addEventListener("change", (evento) => mostrarCard(evento, cardFuenteDePoder));
+    selectVentilador.addEventListener("change", (evento) => mostrarCard(evento, cardVentilador));
+    selectRefrigeracion.addEventListener("change", (evento) => mostrarCard(evento, cardRefrigeracion));
+    selectSistemaOperativo.addEventListener("change", (evento) => mostrarCard(evento, cardSistemaOperativo));
+
+    // Escuchar cuando cambie
+    inputImg.addEventListener("change", () => {
+    // Los archivos seleccionados, pueden ser muchos o uno
+    const fotos = inputImg.files;
+    // Si no hay archivos salimos de la función y quitamos la imagen
+    if (!fotos || !fotos.length) {
+      imgPrevisualizacion.src = "";
+      return;
+    }
+    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+    const primeraFoto = fotos[0];
+    formData.append("foto", primeraFoto);
+    // Lo convertimos a un objeto de tipo objectURL
+    const objectURL = URL.createObjectURL(primeraFoto);
+    // Y a la fuente de la imagen le ponemos el objectURL
+    imgPrevisualizacion.src = objectURL;
+    });
+
+
+btnCrear.addEventListener("click",()=> {
+    const selectTipoProducto = document.getElementById("selectTipoProducto");
+    const idTipoProducto = selectTipoProducto.options[selectTipoProducto.selectedIndex].value;
+    const nombre = document.getElementById("nombreNuevoProducto").value;
+    const marca = document.getElementById("marcaNuevoProducto").value;
+    const precio = document.getElementById("precioNuevoProducto").value;
+    const cantidad = document.getElementById("cantidadNuevoProducto").value;
+
+    if(idTipoProducto == "" || idTipoProducto == 0 || nombre == "" || marca == "" || precio == "" || cantidad == ""){
+      alert("Favor complete todos los campos");
+      return false;
+    }
+
+    formData.append("idTipoProducto", idTipoProducto);
+    formData.append("nombre", nombre);
+    formData.append("marca", marca);
+    formData.append("precio", precio);
+    formData.append("cantidad", cantidad);
+
+       fetch("/productos",{
+      method:"POST",
+      body: formData,
+    }).then( (response) =>{ 
+      let data = response.json();
+      console.log(data)
+    if(response.status === 201){
+      alert("Producto Creado!")
+      location.reload();
+    }
+    if(response.status === 400){
+      alert("Ingrese imagen del producto");
+      return false;
+    }
+    if(response.status === 500){
+      alert("hubo un error");
+      return false;
+    }
+    }).catch( (error) => {
+      console.log("error:",error);
+            alert("Error 500:", error);
+            });
+      
+  });
+
+
+  const mostrarCard = async(e, card) => {
+    if(e.target.selectedIndex !== 0){
+      const idProducto = e.target.value;
+      console.log(idProducto)
+      
+      const response = await fetch(`/producto/${idProducto}`);
+      let data = await response.json();
+
+      console.log(data);
+
+      for (const indice in data) {  
+        card.innerHTML = '';
+        card.innerHTML += `
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="${data[indice][0].foto}" class="img-fluid rounded-start" alt="Foto de producto" id="imgPrevisualizacionCard" width="100%" height="100%">
+                <input class="btn btn-primary col-12" type="file" accept="image/png, .jpeg, .jpg" id="inputImgCard">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <div>
+                    <label>Nombre Producto:</label>
+                    <input class="col-12 form-control border-primary" type="text" value="${data[indice][0].nombre}" id="inputNombre">
+                    <label>Marca:</label>
+                    <input class="col-12 form-control border-primary" type="text" value="${data[indice][0].marca}" id="inputMarca">
+                    <label>Precio:</label>
+                    <input class="border-primary form-control" type="number" value="${data[indice][0].precio}" id="inputPrecio">   
+                    <label>Cantidad:</label> 
+                    <input class="border-primary form-control" type="number" value="${data[indice][0].cantidad}" id="inputCantidad">
+                  </div>
+                  <div class="col-12 col-md-6 d-grid gap-2 d-md-flex  justify-content-md-end pt-3 pb-3">
+                    <button class="btn btn-primary" id="btnModificar">Modificar</button>
+                    <button class="btn btn-primary" id="btnEliminar">Eliminar</button>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+      }
+
+      let previsualizacion = document.getElementById("imgPrevisualizacionCard");
+      console.log(previsualizacion);
+      let img = document.getElementById("inputImgCard");
+      console.log(img);
+
+      img.addEventListener("change", () => {
+        // Los archivos seleccionados, pueden ser muchos o uno
+        const fotos = img.files;
+        // Si no hay archivos salimos de la función y quitamos la imagen
+        if (!fotos || !fotos.length) {
+        previsualizacion.src = "";
+        return;
+      }
+      // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+      const foto = fotos[0];
+      form.append("foto", foto);
+      // Lo convertimos a un objeto de tipo objectURL
+      const objectURL = URL.createObjectURL(foto);
+      // Y a la fuente de la imagen le ponemos el objectURL
+      previsualizacion.src = objectURL;
+    });
+
+    const btnModificar = document.getElementById("btnModificar");
+    const btnEliminar = document.getElementById("btnEliminar");
+    
+    
+    btnModificar.addEventListener("click", async(e) => {
+
+      e.preventDefault();
+      const nombre = document.getElementById("inputNombre").value;
+      const marca = document.getElementById("inputMarca").value;
+      const precio = document.getElementById("inputPrecio").value;
+      const cantidad = document.getElementById("inputCantidad").value;
+
+      form.append("nombre", nombre);
+      form.append("marca", marca);
+      form.append("precio", precio);
+      form.append("cantidad", cantidad);
+      form.append("idProducto", idProducto);
+      
+      await fetch("/modificarProducto", {
+                method: "PUT",
+                body: form,
+            }).then(res => {
+              console.log(res);
+                if(res.status === 200){
+                    alert("Datos modificados con exito");
+                    location.reload();
+                }
+            })
+                .catch(err => alert(err));
+
+    });
+
+    btnEliminar.addEventListener("click", async(e) => {
+
+      const datos = { idProducto};
+      await fetch("/eliminarProducto", {
+                method: "PUT",
+                body: JSON.stringify(datos), 
+            headers:{
+            'Content-Type': 'application/json'
+            }
+            }).then( (res) => {
+              console.log(res);
+                if(res.status === 200){
+                    alert("Producto eliminado");
+                    location.reload();
+                }
+            }).catch( (err) => {
+              alert("Error 500:", error);
+            });
+    });
+    }
+  }
+</script>
+    
+
+
+
+
+    
+
+
