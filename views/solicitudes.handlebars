@@ -48,8 +48,12 @@
 // Esta función se llama cuando el usuario hace clic en el botón "Ver detalle".
 //Esta función es responsable de realizar una solicitud al servidor para obtener los detalles del pedido.
 const obtenerSolicitudesPorId = async (evento,idPedido) => {
+
+    console.log(idPedido);
     const response = await fetch(`/solicitudes/${idPedido}`);
     let data = await response.json();
+
+    console.log(data);
 
     const productos = data.detalleProducto;
     const solicitudes = data.solicitud;
@@ -95,7 +99,7 @@ const obtenerSolicitudesPorId = async (evento,idPedido) => {
         
         cuerpo.innerHTML += `
         <tr>
-            <td><img src="" alt="Foto no encontrada" width="80px" height="80px"></td>
+            <td><img src="${productos[indice].foto}" alt="Foto no encontrada" width="80px" height="80px"></td>
             <td>${productos[indice].marca}® / ${productos[indice].nombre}</td>
             <td>` + formatearPeso.format(productos[indice].precio) + `</td>
         </tr>`

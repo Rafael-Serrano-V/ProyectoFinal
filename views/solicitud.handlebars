@@ -27,7 +27,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectProcesador">
                 <option selected>Selecciona Procesador(CPU)</option>
                 {{#each procesador}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
              <div class="card mb-3 border-primary" id="cardProcesador">
@@ -38,7 +38,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectPlacaMadre">
                 <option selected>Selecciona Placa Madre</option>
                 {{#each placaMadre}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardPlacaMadre">
@@ -49,7 +49,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectRam">
                 <option selected>Selecciona 1ra Memoria Ram</option>
                 {{#each memoriaRAM}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardMemoriaRam">
@@ -60,7 +60,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectRamDos">
                 <option selected>Selecciona 2da Memoria Ram</option>
                 {{#each memoriaRAM}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardMemoriaRamDos">
@@ -71,7 +71,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectVideo">
                 <option selected>Selecciona 1ra Tarjeta Gráfica</option>
                 {{#each tarjetaGrafica}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardTarjetaGrafica">
@@ -82,7 +82,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectVideoDos">
                 <option selected>Selecciona 2da Tarjeta Gráfica</option>
                 {{#each tarjetaGrafica}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}" > ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardTarjetaGraficaDos">
@@ -93,7 +93,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectTarjetaRed">
                 <option selected>Selecciona Tarjeta de Red</option>
                 {{#each tarjetaDeRed}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardTarjetaRed">
@@ -115,7 +115,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectM2">
                 <option selected>Selecciona 1ra Unidad M.2</option>
                 {{#each unidadMDos}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardUnidadM2">
@@ -126,7 +126,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example"  id="selectM2Dos">
                 <option selected>Selecciona 2da Unidad M.2</option>
                 {{#each unidadMDos}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardUnidadM2Dos">
@@ -137,7 +137,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectSSD">
                 <option selected>Selecciona 1ra Unidad SSD</option>
                 {{#each unidadSSD}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardSSD">
@@ -148,7 +148,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectSSDDos">
                 <option selected>Selecciona 2da Unidad SSD</option>
                 {{#each unidadSSD}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardSSDDos">
@@ -159,7 +159,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectDiscoDuro">
                 <option selected>Selecciona 1er Disco Duro</option>
                 {{#each discoDuro}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardDiscoDuro">
@@ -170,7 +170,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectDiscoDuroDos">
                 <option selected>Selecciona 2do Disco Duro</option>
                 {{#each discoDuro}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardDiscoDuroDos">
@@ -192,7 +192,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectGabinete">
                 <option selected>Selecciona Gabinete</option>
                 {{#each gabinete}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardGabinete">
@@ -214,7 +214,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectFuenteDePoder">
                 <option selected>Selecciona Fuente de Poder</option>
                 {{#each fuenteDePoder}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardFuenteDePoder">
@@ -225,7 +225,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectVentilador">
                 <option selected>Selecciona Ventilador</option>
                 {{#each ventilador}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardVentilador">
@@ -236,7 +236,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectRefrigeracion">
                 <option selected>Selecciona Refrigeración CPU</option>
                 {{#each refrigeracion}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardRefrigeracion">
@@ -258,7 +258,7 @@
               <select class="form-select form-select-sm mb-3 mt-3" aria-label=".form-select-lg example" id="selectSistemaOperativo">
                 <option selected>Selecciona Sistema Operativo</option>
                 {{#each sistemaOperativo}}
-                <option value="ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
+                <option value="ID: {{this.id_producto}} | {{this.marca}} | {{this.nombre}} | ${{this.precio}} | En stock: {{this.cantidad}} | {{this.foto}}"> ID: {{this.id_producto}} / {{this.marca}} / {{this.nombre}} / ${{this.precio}} / En stock: {{this.cantidad}}</option>
                 {{/each}}
               </select>
               <div class="card mb-3 border-primary" id="cardSistemaOperativo">
@@ -371,10 +371,11 @@
   const mostrarCard = (e, card) => {
     if(e.target.selectedIndex !== 0){
       const seleccion = e.target.value;
-      const datos = seleccion.split("/");
-      const id = Number(datos[0].split(":")[1]);
+      const datos = seleccion.split("|");
+      const id = datos[0].split(":")[1];
       const marca = datos[1];
       const nombre = datos[2];
+      const foto = datos[5];
       const precio = Number(datos[3].split("$")[1]);
       const cantidad = Number(datos[4].split(":")[1]);
 
@@ -382,7 +383,7 @@
       card.innerHTML += `
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="/imgs/productos/${id}.jpg" class="img-fluid rounded mx-auto d-block" alt="Foto del producto">
+            <img src="${foto}" class="img-fluid rounded mx-auto d-block" alt="Foto del producto">
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -398,9 +399,6 @@
               <div class="col-md-4">
                 <h5>En stock: ${cantidad}</h5>
               </div>
-                {{!-- <h5>ID : ${id}</h5><br>
-                <h5> Precio efectivo: ${formatearPeso.format(precio)}</h5><br>
-                <h5>En stock: ${cantidad}</h5> --}}
               </div>
             </div>
           </div>
@@ -441,9 +439,15 @@
     let temporal = [];
 
     for(let i = 0; i < seleccionados.length; i++){
+      let index = seleccionados[i].index;
+      if(index == 0)
+      {
+        alert("seleccione un elemento");
+        return false;
+      }
       let productoSeleccionado = seleccionados[i].value;
-      let idProducto = +productoSeleccionado.split("/")[0].split(":")[1];
-      let precioProducto = +productoSeleccionado.split("/")[3].split("$")[1];
+      let idProducto = productoSeleccionado.split("|")[0].split(":")[1];
+      let precioProducto = +productoSeleccionado.split("|")[3].split("$")[1];
       let valorCantidad = 0;
 
       let temp = {
@@ -452,10 +456,14 @@
         idProducto: idProducto,
       }
 
+      
+
       temporal.push(temp);
+      console.log(temporal);
     }
 
     valores[nombreLista]=temporal;
+    console.log(valores);
     calcularSuma(valores);
   }
 
@@ -528,11 +536,15 @@
     let datos = [];
     for (let indice in valores){
       for(let i = 0; i < valores[indice].length;i++){
-       const idProducto = valores[indice][i].idProducto;
+       const id = valores[indice][i].idProducto;
+        const idProducto = id.split(" ")[1];
+      
+       console.log("antes del post:",idProducto);
        datos.push( {idUsuario, idProducto});
        
       }
     }
+    console.log(datos);
 
     fetch("/solicitud", {
             method: 'POST',

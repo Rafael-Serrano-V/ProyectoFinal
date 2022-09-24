@@ -55,6 +55,22 @@ const crearUsuarioDB = async ({ nombre, apellido, correo, hash, telefono, direcc
   }
 };
 
+const crearProducto = async ({ idProducto, tipoProducto, nombre, marca, precio, cantidad, urlFotoBD }) => {
+  console.log(idProducto, tipoProducto, nombre, marca, precio, cantidad, urlFotoBD);
+  try {
+    const consulta = {
+      text: "INSERT INTO productos ( id_producto, id_tipo_producto, nombre, precio, cantidad, foto, esta_activo, marca) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+      values: [ idProducto, tipoProducto, nombre, precio, cantidad, urlFotoBD, true, marca ],
+    };
+    const resultado = await pool.query(consulta);
+    return resultado.rows[0];
+  } catch (error) {
+    console.log(error, error.detail);
+    const { detail } = error;
+    return detail;
+  }
+};
+
 //Toma el correo del usuario como argumento y devuelve una promesa que se resuelve en un objeto con los datos del usuario.
 const obtenerUsuarioPorCorreo = async (correo) => {
   const consulta = {
@@ -274,6 +290,7 @@ const crearSolicitud = async ( {idUsuario, idProducto}, idGlobal)=> {
   }
 }
 
+
 //Devuelve todas las filas de la tabla "solicitudes" donde la columna "id_usuario" es igual al parámetro idUsuario.
 const solicitudesPorIdUsuario = async(idUsuario)=>{
   const consulta = {
@@ -296,6 +313,16 @@ const solicitudPorIdGlobal = async(idGlobal)=>{
   return resultado.rows;
 }
 
+const obtenerSolicitudes = async()=>{
+  try {
+    const resultado = await pool.query("SELECT * FROM solicitudes");
+  return resultado.rows;
+  } catch (error) {
+    console.log(error);
+  }
+  
+}
+
 //Devuelve el nombre, marca, precio y foto de un producto que se encuentra en un pedido global.
 const productosPorIDGlobal = async(id) => {
   const consulta = {
@@ -304,6 +331,40 @@ const productosPorIDGlobal = async(id) => {
   }
   const resultado = await pool.query(consulta);
   return resultado.rows;
+}
+
+const obtenerTipoProducto = async ()=>{
+  const consulta = {
+    text: "SELECT * FROM tipo_producto",
+  }
+
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const obtenerProductoPorId = async(id) => {
+  const consulta = {
+    text: "SELECT * FROM productos WHERE id_producto = $1",
+    values: [id]
+  }
+  const resultado = await pool.query(consulta);
+  return resultado.rows;
+}
+
+const modificarProductoPorId = async ({ nombre, marca, precioInt, cantidadInt, idProducto, urlFotoBD }) =>{
+  const consulta = {
+    text: "UPDATE productos SET nombre=$1, precio=$2, cantidad=$3, foto=$4, esta_activo=$5, marca=$6 WHERE id_producto=$7",
+    values: [nombre, precioInt, cantidadInt, urlFotoBD, true, marca, idProducto],
+  }
+  return await pool.query(consulta);
+}
+
+const eiliminarProductoPorId = async ({ idProducto, activo }) =>{
+  const consulta = {
+    text: "UPDATE productos SET esta_activo=$1 WHERE id_producto=$2",
+    values: [activo, idProducto],
+  }
+  return await pool.query(consulta);
 }
 
 //Se exportan las funciones para ser utilizadas en otros archivos
@@ -335,6 +396,12 @@ module.exports = {
   solicitudPorIdGlobal,
   productosPorIDGlobal,
   modificarActivoUsuario,
-  modificarAdminUsuario
+  modificarAdminUsuario,
+  obtenerTipoProducto,
+  crearProducto,
+  obtenerProductoPorId,
+  modificarProductoPorId,
+  eiliminarProductoPorId,
+  obtenerSolicitudes
 
 };

@@ -429,12 +429,12 @@ VALUES
 ('Sistema Operativo');
 
 CREATE TABLE productos(
-    id_producto SERIAL PRIMARY KEY,
+    id_producto VARCHAR(50) NOT NULL PRIMARY KEY,
     id_tipo_producto INT NOT NULL, 
     nombre VARCHAR(100) NOT NULL,
     precio INT NOT NULL CHECK ( precio >= 0),
     cantidad INT NOT NULL CHECK ( cantidad >= 0),
-    foto VARCHAR(50),
+    foto VARCHAR(100),
     esta_activo BOOLEAN NOT NULL,
     marca VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_tipo_producto) REFERENCES tipo_producto(id_tipo_producto)
@@ -601,13 +601,51 @@ VALUES
 //Unidad SSD
 INSERT INTO productos (id_tipo_producto, nombre, precio, cantidad, foto, esta_activo, marca)
 VALUES
+(7,'Unidad SSD 480GB Sata3 2.5" Green', 37990, 5, NULL, TRUE, 'WD'),
+(7,'Unidad SSD 480GB Sata3 2.5" A400', 48990, 5, NULL, TRUE, 'Kingston');
+
+//Disco Duro
+INSERT INTO productos (id_tipo_producto, nombre, precio, cantidad, foto, esta_activo, marca)
+VALUES
+(8,'Disco Duro PC 1TB Barracuda', 37990, 5, NULL, TRUE, 'Seagate'),
+(8,'Disco Duro PC 1TB P300', 39990, 5, NULL, TRUE, 'Toshiba');
+
+//Gabinete
+INSERT INTO productos (id_tipo_producto, nombre, precio, cantidad, foto, esta_activo, marca)
+VALUES
+(10,'Gabinete E-ATX Talos P1A', 179990, 5, NULL, TRUE, 'Gamdias'),
+(10,'Gabinete E-ATX Syncro Q704 - PSU 650W 80Plus Gold', 189990, 5, NULL, TRUE, 'Seasonic');
+
+//Fuente de Poder
+INSERT INTO productos (id_tipo_producto, nombre, precio, cantidad, foto, esta_activo, marca)
+VALUES
+(11,'Fuente de Poder 1000W 80Plus Gold RM1000x Fully Modular', 239990, 5, NULL, TRUE, 'Corsair'),
+(11,'Fuente de Poder 1200W 80Plus Platinum Full Modular (RGB)', 399990, 5, NULL, TRUE, 'Asus');
+
+//Ventilador
+INSERT INTO productos (id_tipo_producto, nombre, precio, cantidad, foto, esta_activo, marca)
+VALUES
+(12,'Ventilador 120mm - NF-A12x25 Versión FLX', 32990, 5, NULL, TRUE, 'Noctua'),
+(12,'Ventilador 120mm - Aeolus M2 1205R RGB', 69990, 5, NULL, TRUE, 'Gamdias');
+
+//Refrigeración
+INSERT INTO productos (id_tipo_producto, nombre, precio, cantidad, foto, esta_activo, marca)
+VALUES
+(13,'Watercooling H150i Elite Capellix', 299990, 5, NULL, TRUE, 'Corsair'),
+(13,'Watercooling ROG Strix 360mm White Edition RGB', 299990, 5, NULL, TRUE, 'Asus');
+
+//Sistema Operativo
+INSERT INTO productos (id_tipo_producto, nombre, precio, cantidad, foto, esta_activo, marca)
+VALUES
+(14,'Windows 10 Home OEM 64 bits', 142990, 5, NULL, TRUE, 'Microsoft'),
+(14,'Windows 10 Profesional OEM 64 bits', 180690, 5, NULL, TRUE, 'Microsoft');
 
 
 CREATE TABLE solicitudes(
     id_solicitud SERIAL PRIMARY KEY,
     pedido_global VARCHAR(50) NOT NULL,
     id_usuario INT NOT NULL,
-    id_producto INT NOT NULL,
+    id_producto VARCHAR(50) NOT NULL,
     esta_completado BOOLEAN NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
@@ -615,15 +653,4 @@ CREATE TABLE solicitudes(
 
 INSERT INTO solicitudes (pedido_global, id_usuario, id_producto, esta_completado)
 VALUES
-('ASD123',3, 229, FALSE),
-('ASD123',3, 265, FALSE),
-('ASD123',3, 238, FALSE),
-('ASD123',3, 153, FALSE),
-('ASD123',3, 184, FALSE),
-('ASD123',3, 200, FALSE),
-('ASD456',4, 175, FALSE),
-('ASD456',4, 194, FALSE),
-('ASD456',4, 209, FALSE),
-('ASD456',4, 235, FALSE),
-('ASD456',4, 251, FALSE),
-('ASD456',4, 261, FALSE);
+('ASD123', 14, 216, FALSE );
