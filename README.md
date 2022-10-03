@@ -2,7 +2,7 @@
 
 Como objetivo se requiere lograr el desarrollo de una página web que solucione la problemática de permitir a usuarios generar solicitudes para una posterior compra de computadores.  
 
-- [Video Presentación]([https://github.com/WardMore/ProyectoFinal/blob/main/package.json](https://youtu.be/SfiaA57I6fY))
+- [Video Presentación](https://youtu.be/SfiaA57I6fY)
 
 ## Hito 1 - Etapa de ideación y setup
 
